@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Feedbackie\Core\Models;
+
+use Feedbackie\Core\Casts\AsFeedbackOptionsDistribution;
+use Feedbackie\Core\Casts\AsLanguageScoreDistribution;
+use Feedbackie\Core\Traits\HasCurrentSiteScope;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property string $id
+ * @property string|null $site_id
+ * @property string $answer
+ * @property string|null $comment
+ * @property $options
+ * @property string $url
+ * @property string $url_hash
+ * @property string|null $hash
+ * @property int|null $language_score
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $user_id
+ * @property string|null $email
+ * @property $language_scores
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereAnswer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereLanguageScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereOptions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereSiteId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUrlHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUserId($value)
+ * @mixin \Eloquent
+ */
+class FeedbackStats extends Model
+{
+    use HasCurrentSiteScope;
+
+    public $table = "feedback";
+
+    public $incrementing = false;
+
+    public $keyType = "string";
+
+    public $primaryKey = "url";
+
+    public $casts = [
+        "comments" => AsArrayObject::class,
+        "options" => AsFeedbackOptionsDistribution::class,
+        "language_scores" => AsLanguageScoreDistribution::class,
+    ];
+
+    protected function newBaseQueryBuilder()
+    {
+        $builder = parent::newBaseQueryBuilder();
+
+        if (app()->environment("testing")) {
+            return $builder;
+        }
+
+        $builder
+            ->selectRaw("url")
+            ->selectRaw("count(*) as total")
+            ->selectRaw("count(*) FILTER (WHERE answer = 'yes') AS yes_count")
+            ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
+            ->selectRaw("json_agg(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
+            ->selectRaw("json_agg(options) AS options")
+            ->selectRaw("json_agg(language_score) AS language_scores")
+            ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
+            ->groupBy("url");
+
+        return $builder;
+    }
+}
