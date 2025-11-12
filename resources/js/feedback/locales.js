@@ -106,7 +106,7 @@ let locales = {
         "yes": "Да",
         "no": "Нет",
         "thank_you_any_more_feedback": "Хотите ещё что-то добавить?",
-        "it_will_help_to_improve_the_article_in_the_future": " (Это поможет улучшить статью в будущем.)",
+        "it_will_help_to_improve_the_article_in_the_future": " (Это поможет улучшить материал в будущем.)",
         "what_affected_your_experience": "Что повлияло на ваши впечатления?",
         "resolved_my_issue": "Моя проблема решена",
         "clear_instructions": "Понятные инструкции",
