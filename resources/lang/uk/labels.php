@@ -17,6 +17,14 @@ return [
         'options' => 'Варіанти',
         'option' => 'Варіант',
         'url' => 'URL',
+        'period' => 'Період',
+        'today' => 'Сьогодні',
+        'yesterday' => 'Вчора',
+        'week' => 'Тиждень',
+        'last_month' => 'Останній місяць',
+        'last_3_months' => 'Останні 3 місяці',
+        'custom' => 'Кастомний період',
+        'select_period' => 'Виберіть період',
     ],
 
     'periods' => [

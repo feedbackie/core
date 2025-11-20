@@ -17,6 +17,14 @@ return [
         'options' => 'Options',
         'option' => 'Option',
         'url' => 'URL',
+        'period' => 'Period',
+        'today' => 'Today',
+        'yesterday' => 'Yesterday',
+        'week' => 'Week',
+        'last_month' => 'Last Month',
+        'last_3_months' => 'Last 3 Months',
+        'custom' => 'Custom Period',
+        'select_period' => 'Select Period',
     ],
 
     'periods' => [

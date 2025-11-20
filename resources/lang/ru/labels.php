@@ -17,6 +17,14 @@ return [
         'options' => 'Варианты',
         'option' => 'Вариант',
         'url' => 'URL',
+        'period' => 'Период',
+        'today' => 'Сегодня',
+        'yesterday' => 'Вчера',
+        'week' => 'Неделя',
+        'last_month' => 'Последний месяц',
+        'last_3_months' => 'Последние 3 месяца',
+        'custom' => 'Произвольный период',
+        'select_period' => 'Выберите период',
     ],
 
     'periods' => [
