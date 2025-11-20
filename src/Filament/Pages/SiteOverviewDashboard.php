@@ -17,6 +17,8 @@ class SiteOverviewDashboard extends BaseDashboard
     use InteractsWithSiteSelector;
 
     protected static string $routePath = '/dashboard';
+    
+    protected static ?string $slug = 'dashboard';
 
     protected static ?int $navigationSort = -2;
 

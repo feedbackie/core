@@ -169,5 +169,9 @@ return [
         'report_anchor_placeholder' => 'Enter element ID for report form',
         'feedback_anchor_placeholder' => 'Enter element ID for feedback popup',
         'copied' => 'Copied!',
+    ],
+
+    'site_selector' => [
+        'placeholder' => 'Not selected',
     ]
 ];

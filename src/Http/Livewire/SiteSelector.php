@@ -31,7 +31,7 @@ class SiteSelector extends Component
 
     public function getPlaceholder(): string
     {
-        return "Not selected";
+        return \__('feedbackie-core::labels.site_selector.placeholder');
     }
 
     public function getSites(): array

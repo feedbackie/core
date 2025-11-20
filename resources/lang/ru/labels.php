@@ -169,6 +169,10 @@ return [
         'report_anchor_placeholder' => 'Введите ID элемента для формы сообщения',
         'feedback_anchor_placeholder' => 'Введите ID элемента для попапа обратной связи',
         'copied' => 'Скопировано!',
+    ],
+
+    'site_selector' => [
+        'placeholder' => 'Не выбрано',
     ]
 ];
 
