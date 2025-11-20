@@ -151,5 +151,15 @@ return [
             'reports_count' => 'Report Count',
             'feedback_count' => 'Feedback Count',
         ]
+    ],
+
+    'code_viewer' => [
+        'report_anchor_label' => 'Report Message Container Anchor (ID)',
+        'feedback_anchor_label' => 'Feedback Popup Container Anchor (ID)',
+        'generated_code_label' => 'Generated Code',
+        'copy_code' => 'Copy Code',
+        'report_anchor_placeholder' => 'Enter element ID for report form',
+        'feedback_anchor_placeholder' => 'Enter element ID for feedback popup',
+        'copied' => 'Copied!',
     ]
 ];

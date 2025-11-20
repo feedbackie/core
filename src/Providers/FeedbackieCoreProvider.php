@@ -10,6 +10,7 @@ use Feedbackie\Core\Services\SitesStorage;
 use Feedbackie\Core\Utils\Colors;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Console\Commands\DownloadGeoIpDatabaseCommand;
+use Feedbackie\Core\Http\Livewire\SiteCodeViewer;
 use Feedbackie\Core\Http\Livewire\SiteSelector;
 use Feedbackie\Core\Models\Feedback;
 use Feedbackie\Core\Models\Metadata;
@@ -71,6 +72,7 @@ class FeedbackieCoreProvider extends ServiceProvider
         }
 
         Livewire::component(SiteSelector::COMPONENT_NAME, SiteSelector::class);
+        Livewire::component(SiteCodeViewer::COMPONENT_NAME, SiteCodeViewer::class);
 
         Site::observe(FillUserIdFromSession::class);
         Feedback::observe(FillUserIdFromSite::class);

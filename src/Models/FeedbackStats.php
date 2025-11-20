@@ -9,6 +9,7 @@ use Feedbackie\Core\Casts\AsLanguageScoreDistribution;
 use Feedbackie\Core\Traits\HasCurrentSiteScope;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property string $id
@@ -65,20 +66,31 @@ class FeedbackStats extends Model
     {
         $builder = parent::newBaseQueryBuilder();
 
-        if (app()->environment("testing")) {
-            return $builder;
-        }
+        $driver = DB::connection()->getDriverName();
 
-        $builder
-            ->selectRaw("url")
-            ->selectRaw("count(*) as total")
-            ->selectRaw("count(*) FILTER (WHERE answer = 'yes') AS yes_count")
-            ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
-            ->selectRaw("json_agg(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
-            ->selectRaw("json_agg(options) AS options")
-            ->selectRaw("json_agg(language_score) AS language_scores")
-            ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
-            ->groupBy("url");
+        if ($driver === 'pgsql') {
+            $builder
+                ->selectRaw("url")
+                ->selectRaw("count(*) as total")
+                ->selectRaw("count(*) FILTER (WHERE answer = 'yes') AS yes_count")
+                ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
+                ->selectRaw("json_agg(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
+                ->selectRaw("json_agg(options) AS options")
+                ->selectRaw("json_agg(language_score) AS language_scores")
+                ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
+                ->groupBy("url");
+        } elseif ($driver === 'sqlite') {
+            $builder
+                ->selectRaw("url")
+                ->selectRaw("count(*) as total")
+                ->selectRaw("count(*) FILTER (WHERE answer = 'yes') AS yes_count")
+                ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
+                ->selectRaw("json_group_array(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
+                ->selectRaw("json_group_array(options) AS options")
+                ->selectRaw("json_group_array(language_score) AS language_scores")
+                ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
+                ->groupBy("url");
+        }
 
         return $builder;
     }

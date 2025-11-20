@@ -17,8 +17,7 @@
       window.feedbackie_settings.base_url = "{{$baseUrl}}";
 @endif
 @if($baseUrl !== null)
-      window.feedbackie_settings.locale = "{{$locale}}";
+      window.feedbackie_settings.locale = "{{$locale}}"; 
 @endif
-
 </script>
 <script src="{{asset("vendor/feedbackie/build/assets/app.js")}}"></script>

@@ -151,5 +151,15 @@ return [
             'reports_count' => 'Кількість повідомлень',
             'feedback_count' => 'Зворотний зв\'язок',
         ]
+    ],
+
+    'code_viewer' => [
+        'report_anchor_label' => 'ID контейнера повідомлення про помилку',
+        'feedback_anchor_label' => 'ID контейнера попапу зворотного зв\'язку',
+        'generated_code_label' => 'Згенерований код',
+        'copy_code' => 'Копіювати код',
+        'report_anchor_placeholder' => 'Введіть ID елемента для форми повідомлення',
+        'feedback_anchor_placeholder' => 'Введіть ID елемента для попапу зворотного зв\'язку',
+        'copied' => 'Скопійовано!',
     ]
 ];

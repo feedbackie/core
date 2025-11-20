@@ -41,7 +41,7 @@ class UpdateFeedbackRequest extends FormRequest
 
         return new ExtendedFeedbackDto(
             options: $data['options'] ?? [],
-            languageScore: $data['language_score'],
+            languageScore: $data['language_score'] ?? null,
             comment: $data['comment'] ?? null,
             email: $data['email'] ?? null,
         );

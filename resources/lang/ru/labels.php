@@ -151,6 +151,16 @@ return [
             'reports_count' => 'Количество сообщений',
             'feedback_count' => 'Обратная связь',
         ]
+    ],
+
+    'code_viewer' => [
+        'report_anchor_label' => 'ID контейнера сообщения об ошибке',
+        'feedback_anchor_label' => 'ID контейнера попапа обратной связи',
+        'generated_code_label' => 'Сгенерированный код',
+        'copy_code' => 'Копировать код',
+        'report_anchor_placeholder' => 'Введите ID элемента для формы сообщения',
+        'feedback_anchor_placeholder' => 'Введите ID элемента для попапа обратной связи',
+        'copied' => 'Скопировано!',
     ]
 ];
 
