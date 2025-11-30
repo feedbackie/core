@@ -41,22 +41,22 @@ class FeedbackieCoreProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../config/feedbackie.php' => config_path('feedbackie.php'),
-        ]);
+        ], 'config');
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/feedbackie'),
-        ]);
+        ], 'assets');
 
         $this->publishes([
             __DIR__ . '/../../resources/js' => resource_path('js/vendor/feedbackie'),
-        ]);
+        ], 'assets');
         $this->publishes([
             __DIR__ . '/../../resources/css' => resource_path('css/vendor/feedbackie'),
-        ]);
+        ], 'assets');
 
 
         $this->publishesMigrations([
             __DIR__ . '/../../database/migrations' => database_path('migrations'),
-        ]);
+        ], 'migrations');
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'feedbackie-core');
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');

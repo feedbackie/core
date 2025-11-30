@@ -9,7 +9,10 @@
         "filament/filament": "^3.0",
         "livewire/livewire": "^3.0",
         "geoip2/geoip2": "^2.0",
-        "foroco/php-browser-detection": "^2.7"
+        "foroco/php-browser-detection": "^2.7",
+        "spatie/laravel-data": "^4.18",
+        "spatie/url": "^2.4",
+        "php-ds/php-ds": "^1.4"
     },
     "autoload": {
         "psr-4": {

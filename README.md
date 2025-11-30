@@ -35,3 +35,10 @@ class User extends Authenticatable implements UserContract, FilamentUser
     }
 }
 ```
+
+Publish package resources:
+
+``` 
+php artisan vendor:publish --provider="Feedbackie\Core\Providers\FeedbackieCoreProvider" --tag="assets"
+
+```
