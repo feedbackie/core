@@ -65,15 +65,9 @@ class SiteResource extends Resource
                     ->schema([
                         Toggle::make("report_enabled")
                             ->label(\__('feedbackie-core::labels.resources.sites.reports_enabled'))
-                            ->disabled(function (): bool {
-                                return !auth()->user()->canEditSites();
-                            })
                             ->default(true),
                         Toggle::make("feedback_enabled")
                             ->label(\__('feedbackie-core::labels.resources.sites.feedback_enabled'))
-                            ->disabled(function (): bool {
-                                return !auth()->user()->canEditSites();
-                            })
                             ->default(true),
                     ])
             ]);
