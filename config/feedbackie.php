@@ -11,5 +11,5 @@ return [
         'feedbacks_middleware' => [],
     ],
 
-    'asset_url' => asset("vendor/feedbackie/build/assets/app.js"),
+    'asset_url' => "vendor/feedbackie/build/assets/app.js",
 ];

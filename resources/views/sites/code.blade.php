@@ -20,4 +20,4 @@
       window.feedbackie_settings.locale = "{{$locale}}";
 @endif
 </script>
-<script src="{{config('feedbackie.asset_url')}}"></script>
+<script src="{{asset(config('feedbackie.asset_url'))}}"></script>
