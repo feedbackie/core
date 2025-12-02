@@ -10,4 +10,6 @@ return [
         'reports_middleware' => [],
         'feedbacks_middleware' => [],
     ],
+
+    'asset_url' => asset("vendor/feedbackie/build/assets/app.js"),
 ];
