@@ -28,6 +28,12 @@ class DownloadGeoIpDatabaseCommand extends Command
      */
     public function handle(GeoipService $geoipService)
     {
+        if($geoipService->shouldDownloadDatabase() === false) {
+            $this->info("Geoip database is up to date. No need to download.");
+
+            return self::SUCCESS;
+        }
+
         $this->info("Downloading geoip database...");
 
         $geoipService->downloadDatabase();

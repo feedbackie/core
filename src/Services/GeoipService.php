@@ -34,6 +34,19 @@ class GeoipService
         }
     }
 
+    public function shouldDownloadDatabase(): bool
+    {
+        if (false === file_exists($this->databaseFile)) {
+            return true;
+        }
+
+        if (time() - filemtime($this->databaseFile) >= 86400) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function downloadDatabase(): void
     {
         $url = 'https://github.com/iplocate/ip-address-databases/raw/refs/heads/main/ip-to-country/ip-to-country.mmdb';
