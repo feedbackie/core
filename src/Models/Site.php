@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\User;
+use App\Models\SiteView;
+use Illuminate\Database\Eloquent\Builder;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Contracts\HasUserScope;
 use Feedbackie\Core\Contracts\UserContract;
@@ -20,32 +25,32 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $domain
  * @property bool $report_enabled
  * @property bool $feedback_enabled
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $user_id
  * @property string|null $name
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Feedback> $feedbacks
+ * @property-read Collection<int, \App\Models\Feedback> $feedbacks
  * @property-read int|null $feedbacks_count
  * @property-read \App\Models\Metadata|null $lastEvent
  * @property-read mixed $last_event_date
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Report> $reports
+ * @property-read Collection<int, \App\Models\Report> $reports
  * @property-read int|null $reports_count
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SiteView> $viewsMonth
+ * @property-read User $user
+ * @property-read Collection<int, SiteView> $viewsMonth
  * @property-read int|null $views_month_count
  * @method static \Database\Factories\SiteFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereConfig($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereDomain($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereFeedbackEnabled($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereReportEnabled($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Site whereUserId($value)
+ * @method static Builder<static>|Site newModelQuery()
+ * @method static Builder<static>|Site newQuery()
+ * @method static Builder<static>|Site query()
+ * @method static Builder<static>|Site whereConfig($value)
+ * @method static Builder<static>|Site whereCreatedAt($value)
+ * @method static Builder<static>|Site whereDomain($value)
+ * @method static Builder<static>|Site whereFeedbackEnabled($value)
+ * @method static Builder<static>|Site whereId($value)
+ * @method static Builder<static>|Site whereName($value)
+ * @method static Builder<static>|Site whereReportEnabled($value)
+ * @method static Builder<static>|Site whereUpdatedAt($value)
+ * @method static Builder<static>|Site whereUserId($value)
  * @mixin \Eloquent
  */
 class Site extends Model implements HasUserScope

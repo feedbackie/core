@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Traits;
 
+use RuntimeException;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -58,7 +59,7 @@ trait HasChartDateFilters
             $startDate = $this->getCurrentDate()->subYear()->startOfYear();
             $endDate = $this->getCurrentDate()->subYear()->endOfYear();
         } else {
-            throw new \RuntimeException("Unknown filter");
+            throw new RuntimeException("Unknown filter");
         }
 
         $query->where('created_at', '>=', $startDate)

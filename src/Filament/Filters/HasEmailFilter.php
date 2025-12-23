@@ -13,8 +13,8 @@ class HasEmailFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('Has Email')
-            ->form([
+        return Filter::make('Has Email')
+            ->schema([
                 Checkbox::make('has_email')
                     ->label(\__('feedbackie-core::labels.filters.has_email')),
             ])

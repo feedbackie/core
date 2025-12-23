@@ -23,7 +23,7 @@ class ListReportStats extends ListRecords
         return [];
     }
 
-    public function getTableRecordKey(Model $record): string
+    public function getTableRecordKey(Model|array $record): string
     {
         return $record->url;
     }

@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
+use Feedbackie\Core\Filament\Resources\ReportResource\Pages\ListReports;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\ReportResource\Pages;
 use Feedbackie\Core\Filament\Schemas\MetadataSchema;
@@ -17,10 +29,10 @@ use Feedbackie\Core\Utils\Hash;
 use Carbon\Carbon;
 use Feedbackie\Core\Utils\Icons;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -28,7 +40,7 @@ class ReportResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     public static function getNavigationGroup(): ?string
     {
@@ -55,14 +67,14 @@ class ReportResource extends Resource
         return FeedbackieConfiguration::getReportModelClass();
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Fieldset::make('Report')
+        return $schema
+            ->components([
+                Fieldset::make('Report')
                     ->label(\__('feedbackie-core::labels.resources.report.main_fieldset'))
                     ->schema([
-                        Forms\Components\RichEditor::make("full_text")
+                        RichEditor::make("full_text")
                             ->label(\__('feedbackie-core::labels.resources.report.full_text'))
                             ->formatStateUsing(function ($state) {
                                 $text = str_replace('[sel]', '<span style="color:red">', $state);
@@ -70,17 +82,17 @@ class ReportResource extends Resource
 
                                 return $text;
                             }),
-                        Forms\Components\RichEditor::make("diff_text")
+                        RichEditor::make("diff_text")
                             ->label(\__('feedbackie-core::labels.resources.report.diff_text')),
-                        Forms\Components\TextInput::make("comment")
+                        TextInput::make("comment")
                             ->label(\__('feedbackie-core::labels.resources.report.comment')),
-                        Forms\Components\TextInput::make("created_at")
+                        TextInput::make("created_at")
                             ->label(\__('feedbackie-core::labels.general.created_at'))
                             ->formatStateUsing(function ($state) {
                                 return (new Carbon($state))->format("Y-m-d H:i:s");
                             }),
                     ]),
-                Forms\Components\Fieldset::make('Metadata')
+                Fieldset::make('Metadata')
                     ->label(\__('feedbackie-core::labels.metadata.metadata_fieldset'))
                     ->relationship('metadata')
                     ->schema(MetadataSchema::make()),
@@ -91,7 +103,7 @@ class ReportResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("id")
+                TextColumn::make("id")
                     ->label('#')
                     ->formatStateUsing(function (Report $record) {
                         $icons = '';
@@ -115,7 +127,7 @@ class ReportResource extends Resource
                         return Colors::getColors()[Hash::md5ToNumber($record?->metadata?->getHashAttribute())];
                     })
                 ,
-                Tables\Columns\TextColumn::make("url")
+                TextColumn::make("url")
                     ->url(function (Report $report) {
                         return $report->url;
                     }, true)
@@ -123,7 +135,7 @@ class ReportResource extends Resource
                     ->searchable()
                     ->limit(50)
                     ->wrap(),
-                Tables\Columns\TextColumn::make("full_text")
+                TextColumn::make("full_text")
                     ->label(\__('feedbackie-core::labels.resources.report.full_text'))
                     ->wrap(true)
                     ->html(true)
@@ -133,34 +145,34 @@ class ReportResource extends Resource
 
                         return $text;
                     }),
-                Tables\Columns\TextColumn::make("diff_text")
+                TextColumn::make("diff_text")
                     ->label(\__('feedbackie-core::labels.resources.report.diff_text'))
                     ->html(true)
                     ->wrap(true)
                     ->formatStateUsing(function (string $state) {
                         return $state;
                     }),
-                Tables\Columns\TextColumn::make("comment")
+                TextColumn::make("comment")
                     ->label(\__('feedbackie-core::labels.resources.report.comment'))
                     ->wrap(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                TrashedFilter::make(),
                 CreatedAtFilter::make(),
                 UrlFilter::make(),
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make()
+            ->recordActions([
+                ActionGroup::make([
+                    ViewAction::make()
                         ->icon(null),
-                    Tables\Actions\DeleteAction::make()
+                    DeleteAction::make()
                         ->icon(null),
-                    Tables\Actions\ForceDeleteAction::make()
+                    ForceDeleteAction::make()
                         ->icon(null),
-                    Tables\Actions\RestoreAction::make()
+                    RestoreAction::make()
                         ->icon(null),
                 ])])
-            ->bulkActions([])
+            ->toolbarActions([])
             ->defaultSort("created_at", 'desc');
     }
 
@@ -174,7 +186,7 @@ class ReportResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReports::route('/'),
+            'index' => ListReports::route('/'),
         ];
     }
 
@@ -187,9 +199,13 @@ class ReportResource extends Resource
         }
     }
 
-    public static function canViewAny(): bool
+    public static function getViewAnyAuthorizationResponse(): Response
     {
-        return FeedbackieConfiguration::isRouteSiteDependent();
+        if (FeedbackieConfiguration::isRouteSiteDependent()) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 
     public static function getEloquentQuery(): Builder

@@ -4,19 +4,22 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Feedbackie\Core\Filament\Resources\ReportStatsResource\Pages\ListReportStats;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\ReportStatsResource\Pages;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables;
+use Illuminate\Auth\Access\Response;
 
 class ReportStatsResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chart-pie';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chart-pie';
 
     public static function getNavigationGroup(): ?string
     {
@@ -43,10 +46,10 @@ class ReportStatsResource extends Resource
         return FeedbackieConfiguration::getReportModelClass();
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 //
             ]);
     }
@@ -55,24 +58,24 @@ class ReportStatsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("url")
+                TextColumn::make("url")
                     ->label(__('feedbackie-core::labels.resources.report_stats.url'))
                     ->url(function ($state) {
                         return $state;
                     })
                     ->limit(50)
                     ->searchable(),
-                Tables\Columns\TextColumn::make("total")
+                TextColumn::make("total")
                     ->label(__('feedbackie-core::labels.resources.report_stats.total')),
-                Tables\Columns\TextColumn::make("comments_count")
+                TextColumn::make("comments_count")
                     ->label(__('feedbackie-core::labels.resources.report_stats.has_comment_count')),
             ])
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
             ])
-            ->bulkActions([
+            ->toolbarActions([
             ])
             ->defaultSort("total");
     }
@@ -87,12 +90,16 @@ class ReportStatsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReportStats::route('/'),
+            'index' => ListReportStats::route('/'),
         ];
     }
 
-    public static function canViewAny(): bool
+    public static function getViewAnyAuthorizationResponse(): Response
     {
-        return FeedbackieConfiguration::isRouteSiteDependent();
+        if (FeedbackieConfiguration::isRouteSiteDependent()) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Database\Factories\Feedbackie\Core\Models\ReportFactory;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Traits\HasCurrentSiteScope;
 use Feedbackie\Core\Contracts\HasUserAndSiteScope;
@@ -25,31 +28,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $url
  * @property string|null $comment
  * @property int $offset
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $user_id
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report currentSite()
- * @method static \Database\Factories\Feedbackie\Core\Models\ReportFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereComment($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereDiffText($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereFixedText($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereFullText($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereOffset($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereSelectedText($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereSiteId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Report withoutTrashed()
+ * @property Carbon|null $deleted_at
+ * @method static Builder<static>|Report currentSite()
+ * @method static ReportFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Report newModelQuery()
+ * @method static Builder<static>|Report newQuery()
+ * @method static Builder<static>|Report onlyTrashed()
+ * @method static Builder<static>|Report query()
+ * @method static Builder<static>|Report whereComment($value)
+ * @method static Builder<static>|Report whereCreatedAt($value)
+ * @method static Builder<static>|Report whereDeletedAt($value)
+ * @method static Builder<static>|Report whereDiffText($value)
+ * @method static Builder<static>|Report whereFixedText($value)
+ * @method static Builder<static>|Report whereFullText($value)
+ * @method static Builder<static>|Report whereId($value)
+ * @method static Builder<static>|Report whereOffset($value)
+ * @method static Builder<static>|Report whereSelectedText($value)
+ * @method static Builder<static>|Report whereSiteId($value)
+ * @method static Builder<static>|Report whereUpdatedAt($value)
+ * @method static Builder<static>|Report whereUrl($value)
+ * @method static Builder<static>|Report whereUserId($value)
+ * @method static Builder<static>|Report withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Report withoutTrashed()
  * @mixin \Eloquent
  */
 class Report extends Model implements HasUserAndSiteScope

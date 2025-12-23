@@ -15,8 +15,8 @@ class CreatedAtFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('created_at')
-            ->form([
+        return Filter::make('created_at')
+            ->schema([
                 Select::make('period')
                     ->label(\__('feedbackie-core::labels.filters.period'))
                     ->options([

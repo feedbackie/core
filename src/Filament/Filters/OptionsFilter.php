@@ -14,8 +14,8 @@ class OptionsFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('options')
-            ->form([
+        return Filter::make('options')
+            ->schema([
                 Select::make('selected_option')
                     ->label(\__('feedbackie-core::labels.filters.options'))
                     ->options(FeedbackOptions::toArray()),

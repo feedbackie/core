@@ -13,8 +13,8 @@ class HasOptionsFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('Has options')
-            ->form([
+        return Filter::make('Has options')
+            ->schema([
                 Checkbox::make('has_options')
                     ->label(\__('feedbackie-core::labels.filters.has_options'))
             ])

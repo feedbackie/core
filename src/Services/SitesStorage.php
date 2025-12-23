@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Services;
 
+use RuntimeException;
 use Feedbackie\Core\Models\Site;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,7 +40,7 @@ class SitesStorage
     public function first(): Site
     {
         return Site::firstOr(function () {
-            throw new \RuntimeException("There are no sites!");
+            throw new RuntimeException("There are no sites!");
         });
     }
 

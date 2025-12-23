@@ -4,15 +4,24 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Feedbackie\Core\Filament\Resources\SiteResource\Pages\ListSites;
+use Feedbackie\Core\Filament\Resources\SiteResource\Pages\CreateSite;
+use Feedbackie\Core\Filament\Resources\SiteResource\Pages\EditSite;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\SiteResource\Actions\CodeAction;
 use Feedbackie\Core\Filament\Resources\SiteResource\Actions\OverviewAction;
 use Feedbackie\Core\Filament\Resources\SiteResource\Pages;
 use Feedbackie\Core\Models\Site;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,7 +33,7 @@ class SiteResource extends Resource
 
     protected static ?int $navigationSort = -3;
 
-    protected static ?string $navigationIcon = 'heroicon-o-globe-europe-africa';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-globe-europe-africa';
 
     public static function getModel(): string
     {
@@ -46,10 +55,10 @@ class SiteResource extends Resource
         return \__('feedbackie-core::labels.resources.sites.record_plural_label');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make("name")
                     ->label(\__('feedbackie-core::labels.resources.sites.name'))
                     ->required(),
@@ -83,36 +92,36 @@ class SiteResource extends Resource
                     ->withCount("feedbacks");
             })
             ->columns([
-                Tables\Columns\TextColumn::make("name")
+                TextColumn::make("name")
                     ->label(\__('feedbackie-core::labels.resources.sites.name'))
                     ->action(OverviewAction::make()),
-                Tables\Columns\TextColumn::make("domain")
+                TextColumn::make("domain")
                     ->label(\__('feedbackie-core::labels.resources.sites.domain'))
                     ->action(OverviewAction::make()),
-                Tables\Columns\TextColumn::make("reports_count")
+                TextColumn::make("reports_count")
                     ->label(\__('feedbackie-core::labels.resources.sites.reports_count'))
                     ->action(OverviewAction::make()),
-                Tables\Columns\TextColumn::make("feedbacks_count")
+                TextColumn::make("feedbacks_count")
                     ->label(\__('feedbackie-core::labels.resources.sites.feedback_count'))
                     ->action(OverviewAction::make()),
-                Tables\Columns\TextColumn::make("last_event_date")
+                TextColumn::make("last_event_date")
                     ->label(\__('feedbackie-core::labels.resources.sites.last_event'))
                     ->action(OverviewAction::make()),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
+            ->recordActions([
+                ActionGroup::make([
                     OverviewAction::make()->color("default"),
                     CodeAction::make()->color("success"),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
                 ]),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -127,9 +136,9 @@ class SiteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSites::route('/'),
-            'create' => Pages\CreateSite::route('/create'),
-            'edit' => Pages\EditSite::route('/{record}/edit'),
+            'index' => ListSites::route('/'),
+            'create' => CreateSite::route('/create'),
+            'edit' => EditSite::route('/{record}/edit'),
         ];
     }
 }

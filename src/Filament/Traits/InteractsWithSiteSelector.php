@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Feedbackie\Core\Filament\Traits;
 
 use Feedbackie\Core\Http\Livewire\SiteSelector;
@@ -19,5 +21,6 @@ trait InteractsWithSiteSelector
     public function siteSelected(): void
     {
         $this->dispatch('siteUpdated');
+//        $this->dispatch('refresh-sidebar');
     }
 }

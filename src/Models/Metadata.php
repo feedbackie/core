@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Models;
 
+use Illuminate\Support\Carbon;
+use Database\Factories\Feedbackie\Core\Models\MetadataFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Contracts\HasUserAndSiteScope;
 use Feedbackie\Core\Traits\InteractsWithUserAndSite;
@@ -27,32 +30,32 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property int|null $ts
  * @property int|null $ls
  * @property string|null $ss
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $user_id
  * @property-read Model|\Eloquent $instance
  * @property-read \App\Models\Site $site
- * @method static \Database\Factories\Feedbackie\Core\Models\MetadataFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereBrowser($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereDevice($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereInstanceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereInstanceType($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereLanguage($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereLs($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereOs($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereSiteId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereSs($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereTs($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereUserAgent($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Metadata whereUserId($value)
+ * @method static MetadataFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Metadata newModelQuery()
+ * @method static Builder<static>|Metadata newQuery()
+ * @method static Builder<static>|Metadata query()
+ * @method static Builder<static>|Metadata whereBrowser($value)
+ * @method static Builder<static>|Metadata whereCountry($value)
+ * @method static Builder<static>|Metadata whereCreatedAt($value)
+ * @method static Builder<static>|Metadata whereDevice($value)
+ * @method static Builder<static>|Metadata whereId($value)
+ * @method static Builder<static>|Metadata whereInstanceId($value)
+ * @method static Builder<static>|Metadata whereInstanceType($value)
+ * @method static Builder<static>|Metadata whereIp($value)
+ * @method static Builder<static>|Metadata whereLanguage($value)
+ * @method static Builder<static>|Metadata whereLs($value)
+ * @method static Builder<static>|Metadata whereOs($value)
+ * @method static Builder<static>|Metadata whereSiteId($value)
+ * @method static Builder<static>|Metadata whereSs($value)
+ * @method static Builder<static>|Metadata whereTs($value)
+ * @method static Builder<static>|Metadata whereUpdatedAt($value)
+ * @method static Builder<static>|Metadata whereUserAgent($value)
+ * @method static Builder<static>|Metadata whereUserId($value)
  * @mixin \Eloquent
  */
 class Metadata extends Model implements HasUserAndSiteScope

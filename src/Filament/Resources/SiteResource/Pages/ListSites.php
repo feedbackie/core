@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\SiteResource\Pages;
 
+use Filament\Actions\CreateAction;
 use Feedbackie\Core\Filament\Resources\SiteResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -15,7 +16,7 @@ class ListSites extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

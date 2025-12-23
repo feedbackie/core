@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\SiteResource\Actions;
 
-use Filament\Tables\Actions\Action;
+use Filament\Actions\Action;
 
 class CodeAction extends Action
 {

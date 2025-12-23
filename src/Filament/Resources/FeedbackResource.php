@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Feedbackie\Core\Filament\Resources\FeedbackResource\Pages\ListFeedbacks;
 use App\Models\Feedbackie\Metadata;
 use BladeUI\Icons\Svg;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
@@ -24,22 +29,21 @@ use Feedbackie\Core\Utils\Date;
 use Feedbackie\Core\Utils\Hash;
 use Carbon\Carbon;
 use Feedbackie\Core\Utils\Icons;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\HtmlString;
 
 class FeedbackResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function getNavigationGroup(): ?string
     {
@@ -66,10 +70,10 @@ class FeedbackResource extends Resource
         return FeedbackieConfiguration::getFeedbackModelClass();
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Fieldset::make('Feedback')
                     ->label(\__('feedbackie-core::labels.resources.feedback.main_fieldset'))
                     ->schema([
@@ -129,7 +133,7 @@ class FeedbackResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("id")
+                TextColumn::make("id")
                     ->label('#')
                     ->formatStateUsing(function (Feedback $record) {
                         $icons = '';
@@ -153,7 +157,7 @@ class FeedbackResource extends Resource
                         return Colors::getColors()[Hash::md5ToNumber($record?->metadata?->getHashAttribute())];
                     })
                 ,
-                Tables\Columns\TextColumn::make("url")
+                TextColumn::make("url")
                     ->label(\__('feedbackie-core::labels.resources.feedback.url'))
                     ->url(function ($state) {
                         return $state;
@@ -161,16 +165,17 @@ class FeedbackResource extends Resource
                     ->wrap()
                     ->limit(60)
                     ->searchable(),
-                Tables\Columns\TextColumn::make("answer")
+                TextColumn::make("answer")
                     ->label(\__('feedbackie-core::labels.resources.feedback.answer'))
                     ->badge()->colors(["primary", "success" => "yes", "danger" => "no"]),
-                Tables\Columns\TextColumn::make("options")
+                TextColumn::make("options")
                     ->label(\__('feedbackie-core::labels.resources.feedback.options'))
                     ->badge()
+                    ->wrap()
                     ->formatStateUsing(function ($state) {
                         return FeedbackOptions::from($state)->label();
                     }),
-                Tables\Columns\TextColumn::make("metadata.ls")
+                TextColumn::make("metadata.ls")
                     ->label(\__('feedbackie-core::labels.metadata.duration'))
                     ->toggleable(true, false)
                     ->formatStateUsing(function (?Feedback $record) {
@@ -182,7 +187,7 @@ class FeedbackResource extends Resource
 
                         return $duration;
                     }),
-                Tables\Columns\TextColumn::make("language_score")
+                TextColumn::make("language_score")
                     ->label(\__('feedbackie-core::labels.resources.feedback.language_score'))
                     ->sortable()
                     ->tooltip(function ($state) {
@@ -193,25 +198,25 @@ class FeedbackResource extends Resource
                         }
                     })
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("metadata.country")
+                TextColumn::make("metadata.country")
                     ->label(\__('feedbackie-core::labels.metadata.country'))
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("metadata.ip")
+                TextColumn::make("metadata.ip")
                     ->label(\__('feedbackie-core::labels.metadata.ip'))
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("metadata.browser")
+                TextColumn::make("metadata.browser")
                     ->label(\__('feedbackie-core::labels.metadata.browser'))
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("metadata.device")
+                TextColumn::make("metadata.device")
                     ->label(\__('feedbackie-core::labels.metadata.device'))
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("metadata.os")
+                TextColumn::make("metadata.os")
                     ->label(\__('feedbackie-core::labels.metadata.os'))
                     ->toggleable(true, true),
-                Tables\Columns\TextColumn::make("created_at")
+                TextColumn::make("created_at")
                     ->label(\__('feedbackie-core::labels.general.created_at'))
                     ->toggleable(true, false),
-                Tables\Columns\TextColumn::make("comment")
+                TextColumn::make("comment")
                     ->label(\__('feedbackie-core::labels.resources.feedback.comment'))
                     ->wrap()
                     ->toggleable(true, true),
@@ -224,11 +229,11 @@ class FeedbackResource extends Resource
                 HasCommentFilter::make(),
                 HasEmailFilter::make(),
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(\__('feedbackie-core::labels.actions.delete'))
+            ->recordActions([
+                ViewAction::make(),
+                DeleteAction::make(\__('feedbackie-core::labels.actions.delete'))
             ])
-            ->bulkActions([])
+            ->toolbarActions([])
             ->defaultSort("created_at", 'desc');
     }
 
@@ -242,7 +247,7 @@ class FeedbackResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFeedbacks::route('/'),
+            'index' => ListFeedbacks::route('/'),
         ];
     }
 
@@ -255,8 +260,12 @@ class FeedbackResource extends Resource
         }
     }
 
-    public static function canViewAny(): bool
+    public static function getViewAnyAuthorizationResponse(): Response
     {
-        return FeedbackieConfiguration::isRouteSiteDependent();
+        if (FeedbackieConfiguration::isRouteSiteDependent()) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 }

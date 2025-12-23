@@ -20,6 +20,7 @@ use Feedbackie\Core\Observers\FillUserIdFromSession;
 use Feedbackie\Core\Observers\FillUserIdFromSite;
 use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -81,7 +82,7 @@ class FeedbackieCoreProvider extends ServiceProvider
 
         if (FeedbackieConfiguration::isRouteSiteDependent()) {
             FilamentView::registerRenderHook(
-                'panels::topbar.start',
+                PanelsRenderHook::SIDEBAR_NAV_START,
                 fn(): string => Blade::render('@livewire(\'' . SiteSelector::COMPONENT_NAME . '\')'),
             );
         }

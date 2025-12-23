@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Database\Factories\Feedbackie\Core\Models\FeedbackFactory;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Traits\HasCurrentSiteScope;
 use Feedbackie\Core\Contracts\HasUserAndSiteScope;
@@ -24,30 +27,30 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string $url_hash
  * @property string|null $hash
  * @property int|null $language_score
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $user_id
  * @property string|null $email
  * @property-read \App\Models\Metadata|null $metadata
  * @property-read \App\Models\Site|null $site
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback currentSite()
- * @method static \Database\Factories\Feedbackie\Core\Models\FeedbackFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereAnswer($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereComment($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereLanguageScore($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereOptions($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereSiteId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUrlHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUserId($value)
+ * @method static Builder<static>|Feedback currentSite()
+ * @method static FeedbackFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Feedback newModelQuery()
+ * @method static Builder<static>|Feedback newQuery()
+ * @method static Builder<static>|Feedback query()
+ * @method static Builder<static>|Feedback whereAnswer($value)
+ * @method static Builder<static>|Feedback whereComment($value)
+ * @method static Builder<static>|Feedback whereCreatedAt($value)
+ * @method static Builder<static>|Feedback whereEmail($value)
+ * @method static Builder<static>|Feedback whereHash($value)
+ * @method static Builder<static>|Feedback whereId($value)
+ * @method static Builder<static>|Feedback whereLanguageScore($value)
+ * @method static Builder<static>|Feedback whereOptions($value)
+ * @method static Builder<static>|Feedback whereSiteId($value)
+ * @method static Builder<static>|Feedback whereUpdatedAt($value)
+ * @method static Builder<static>|Feedback whereUrl($value)
+ * @method static Builder<static>|Feedback whereUrlHash($value)
+ * @method static Builder<static>|Feedback whereUserId($value)
  * @mixin \Eloquent
  */
 class Feedback extends Model implements HasUserAndSiteScope

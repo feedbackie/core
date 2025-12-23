@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Services;
 
+use Throwable;
 use Feedbackie\Core\Context\CountryDto;
 use Feedbackie\Core\Services\GeoIP\DatabaseDownloader;
 use Feedbackie\Core\Services\GeoIP\MaxMindDBReader;
@@ -29,7 +30,7 @@ class GeoipService
             if (file_exists($this->databaseFile)) {
                 $this->reader = new MaxMindDBReader($this->databaseFile);
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             Log::error($e->getMessage());
         }
     }
@@ -84,7 +85,7 @@ class GeoipService
             Log::error($e->getMessage());
 
             return new CountryDto("Unrecognized");
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             if (app()->environment("local")) {
                 throw $e;
             }

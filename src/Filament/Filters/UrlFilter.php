@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Filters;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,9 +14,9 @@ class UrlFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('url')
-            ->form([
-                Forms\Components\TextInput::make('url')
+        return Filter::make('url')
+            ->schema([
+                TextInput::make('url')
                     ->label(\__('feedbackie-core::labels.filters.url')),
             ])
             ->indicateUsing(function ($data) {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Feedbackie\Core\Casts\AsFeedbackOptionsDistribution;
 use Feedbackie\Core\Casts\AsLanguageScoreDistribution;
 use Feedbackie\Core\Traits\HasCurrentSiteScope;
@@ -21,27 +23,27 @@ use Illuminate\Support\Facades\DB;
  * @property string $url_hash
  * @property string|null $hash
  * @property int|null $language_score
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $user_id
  * @property string|null $email
  * @property $language_scores
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereAnswer($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereComment($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereLanguageScore($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereOptions($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereSiteId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUrlHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStats whereUserId($value)
+ * @method static Builder<static>|FeedbackStats newModelQuery()
+ * @method static Builder<static>|FeedbackStats newQuery()
+ * @method static Builder<static>|FeedbackStats query()
+ * @method static Builder<static>|FeedbackStats whereAnswer($value)
+ * @method static Builder<static>|FeedbackStats whereComment($value)
+ * @method static Builder<static>|FeedbackStats whereCreatedAt($value)
+ * @method static Builder<static>|FeedbackStats whereEmail($value)
+ * @method static Builder<static>|FeedbackStats whereHash($value)
+ * @method static Builder<static>|FeedbackStats whereId($value)
+ * @method static Builder<static>|FeedbackStats whereLanguageScore($value)
+ * @method static Builder<static>|FeedbackStats whereOptions($value)
+ * @method static Builder<static>|FeedbackStats whereSiteId($value)
+ * @method static Builder<static>|FeedbackStats whereUpdatedAt($value)
+ * @method static Builder<static>|FeedbackStats whereUrl($value)
+ * @method static Builder<static>|FeedbackStats whereUrlHash($value)
+ * @method static Builder<static>|FeedbackStats whereUserId($value)
  * @mixin \Eloquent
  */
 class FeedbackStats extends Model

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Http\Requests\Api\Reports;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Feedbackie\Core\Context\ReportDto;
 use Feedbackie\Core\Utils\Url;
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,7 +22,7 @@ class SubmitReportRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {

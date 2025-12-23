@@ -13,8 +13,8 @@ class HasCommentFilter
 {
     public static function make(): Filter
     {
-        return Tables\Filters\Filter::make('Has comments')
-            ->form([
+        return Filter::make('Has comments')
+            ->schema([
                 Checkbox::make('has_comment')
                     ->label(\__('feedbackie-core::labels.filters.has_comment'))
             ])
