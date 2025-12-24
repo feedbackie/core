@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Configuration;
 
-use Illuminate\Http\Request;
+use Livewire\Livewire;
 
 class FeedbackieConfiguration
 {
@@ -54,8 +54,12 @@ class FeedbackieConfiguration
             'usage'
         ];
 
-        $request = app()->get(Request::class);
-        $path = $request->getPathInfo();
+        if (Livewire::isLivewireRequest()) {
+            $path = Livewire::originalPath();
+        } else {
+            $request = app()->request;
+            $path = $request->getPathInfo();
+        }
         $fragment = last(explode("/", $path));
 
         if (in_array($fragment, $siteDependentRoutes)) {

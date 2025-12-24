@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Pages;
 
+use Feedbackie\Core\Filament\Pages\SiteDependentListRecords;
 use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Widgets\FeedbackOverview;
 use Feedbackie\Core\Filament\Resources\FeedbackStatsResource;
-use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
-use Feedbackie\Core\Filament\Traits\ScopedByCurrentSite;
-use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Model;
 
-class ListFeedbackStats extends ListRecords
+class ListFeedbackStats extends SiteDependentListRecords
 {
-    use InteractsWithSiteSelector;
-    use ScopedByCurrentSite;
-
     protected static string $resource = FeedbackStatsResource::class;
 
     public function getTableRecordKey(Model|array $record): string

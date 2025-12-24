@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\ReportResource\Widgets;
 
+use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
 use Feedbackie\Core\Models\Report;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class ReportsOverview extends BaseWidget
 {
+    use InteractsWithSiteSelector;
+
+    protected ?string $pollingInterval = null;
+
     protected function getStats(): array
     {
         $total = Report::query()

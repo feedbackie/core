@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\ReportResource\Widgets;
 
+use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
 use Feedbackie\Core\Traits\HasChartDateFilters;
 use Feedbackie\Core\Models\Report;
 use Filament\Support\RawJs;
@@ -13,10 +14,12 @@ use Illuminate\Contracts\Support\Htmlable;
 class ReportsChart extends ChartWidget
 {
     use HasChartDateFilters;
+    use InteractsWithSiteSelector;
 
     protected array|int|string $columnSpan = 'full';
 
     public ?string $filter = 'month';
+    protected ?string $pollingInterval = null;
 
     public function getHeading(): string|Htmlable|null
     {

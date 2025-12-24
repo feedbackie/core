@@ -21,6 +21,5 @@ trait InteractsWithSiteSelector
     public function siteSelected(): void
     {
         $this->dispatch('siteUpdated');
-//        $this->dispatch('refresh-sidebar');
     }
 }

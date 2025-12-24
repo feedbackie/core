@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Widgets;
 
+use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
 use Feedbackie\Core\Traits\HasChartDateFilters;
 use Feedbackie\Core\Models\Feedback;
 use Filament\Support\RawJs;
@@ -12,7 +13,9 @@ use Filament\Widgets\ChartWidget;
 class FeedbackChart extends ChartWidget
 {
     use HasChartDateFilters;
+    use InteractsWithSiteSelector;
 
+    protected ?string $pollingInterval = null;
     protected array|int|string $columnSpan = 'full';
 
     public ?string $filter = 'month';
