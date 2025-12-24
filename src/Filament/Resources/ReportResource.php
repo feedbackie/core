@@ -8,6 +8,7 @@ use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Actions\ActionGroup;
@@ -17,12 +18,10 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Feedbackie\Core\Filament\Resources\ReportResource\Pages\ListReports;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
-use Feedbackie\Core\Filament\Resources\ReportResource\Pages;
 use Feedbackie\Core\Filament\Schemas\MetadataSchema;
 use Feedbackie\Core\Filament\Filters\CreatedAtFilter;
 use Feedbackie\Core\Filament\Filters\UrlFilter;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
-use Feedbackie\Core\Models\Feedback;
 use Feedbackie\Core\Models\Report;
 use Feedbackie\Core\Utils\Colors;
 use Feedbackie\Core\Utils\Hash;
@@ -84,7 +83,7 @@ class ReportResource extends Resource
                             }),
                         RichEditor::make("diff_text")
                             ->label(\__('feedbackie-core::labels.resources.report.diff_text')),
-                        TextInput::make("comment")
+                        Textarea::make("comment")
                             ->label(\__('feedbackie-core::labels.resources.report.comment')),
                         TextInput::make("created_at")
                             ->label(\__('feedbackie-core::labels.general.created_at'))
