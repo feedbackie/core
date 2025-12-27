@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\ReportStatsResource\Pages;
+namespace Feedbackie\Core\Filament\Resources\ReportStats\Pages;
 
 use Feedbackie\Core\Filament\Pages\SiteDependentListRecords;
-use Feedbackie\Core\Filament\Resources\ReportResource\Widgets\ReportsOverview;
-use Feedbackie\Core\Filament\Resources\ReportStatsResource;
+use Feedbackie\Core\Filament\Resources\Reports\Widgets\ReportsOverview;
+use Feedbackie\Core\Filament\Resources\ReportStats\ReportStatsResource;
 use Feedbackie\Core\Models\Report;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

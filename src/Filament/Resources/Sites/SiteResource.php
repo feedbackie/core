@@ -2,28 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources;
+namespace Feedbackie\Core\Filament\Resources\Sites;
 
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Fieldset;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ActionGroup;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Feedbackie\Core\Filament\Resources\SiteResource\Pages\ListSites;
-use Feedbackie\Core\Filament\Resources\SiteResource\Pages\CreateSite;
-use Feedbackie\Core\Filament\Resources\SiteResource\Pages\EditSite;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
-use Feedbackie\Core\Filament\Resources\SiteResource\Actions\CodeAction;
-use Feedbackie\Core\Filament\Resources\SiteResource\Actions\OverviewAction;
-use Feedbackie\Core\Filament\Resources\SiteResource\Pages;
-use Feedbackie\Core\Models\Site;
+use Feedbackie\Core\Filament\Resources\Sites\Actions\CodeAction;
+use Feedbackie\Core\Filament\Resources\Sites\Actions\OverviewAction;
+use Feedbackie\Core\Filament\Resources\Sites\Pages\CreateSite;
+use Feedbackie\Core\Filament\Resources\Sites\Pages\EditSite;
+use Feedbackie\Core\Filament\Resources\Sites\Pages\ListSites;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 

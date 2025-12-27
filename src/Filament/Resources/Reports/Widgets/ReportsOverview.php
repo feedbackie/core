@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\ReportResource\Widgets;
+namespace Feedbackie\Core\Filament\Resources\Reports\Widgets;
 
 use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
 use Feedbackie\Core\Models\Report;

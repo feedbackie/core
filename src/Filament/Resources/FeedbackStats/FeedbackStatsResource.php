@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources;
+namespace Feedbackie\Core\Filament\Resources\FeedbackStats;
 
-use Filament\Schemas\Schema;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Pages\ListFeedbackStats;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Pages;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\Pages\ListFeedbackStats;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
 use Feedbackie\Core\Models\FeedbackStats;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Auth\Access\Response;
 

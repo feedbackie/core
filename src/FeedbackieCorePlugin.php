@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Feedbackie\Core;
 
 use Feedbackie\Core\Filament\Pages\SiteOverviewDashboard;
-use Feedbackie\Core\Filament\Resources\ReportResource\Widgets\ReportsOverview;
-use Feedbackie\Core\Filament\Resources\FeedbackResource;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Widgets\FeedbackChart;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Widgets\FeedbackOverview;
-use Feedbackie\Core\Filament\Resources\ReportResource;
-use Feedbackie\Core\Filament\Resources\ReportResource\Widgets\ReportsChart;
-use Feedbackie\Core\Filament\Resources\ReportStatsResource;
-use Feedbackie\Core\Filament\Resources\SiteResource;
+use Feedbackie\Core\Filament\Resources\Feedback\FeedbackResource;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\FeedbackStatsResource;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\Widgets\FeedbackChart;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\Widgets\FeedbackOverview;
+use Feedbackie\Core\Filament\Resources\Reports\ReportResource;
+use Feedbackie\Core\Filament\Resources\Reports\Widgets\ReportsChart;
+use Feedbackie\Core\Filament\Resources\Reports\Widgets\ReportsOverview;
+use Feedbackie\Core\Filament\Resources\ReportStats\ReportStatsResource;
+use Feedbackie\Core\Filament\Resources\Sites\SiteResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 

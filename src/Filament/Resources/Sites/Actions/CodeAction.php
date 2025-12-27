@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\SiteResource\Actions;
+namespace Feedbackie\Core\Filament\Resources\Sites\Actions;
 
 use Filament\Actions\Action;
 

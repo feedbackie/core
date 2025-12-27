@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\ReportResource\Widgets;
+namespace Feedbackie\Core\Filament\Resources\Reports\Widgets;
 
 use Feedbackie\Core\Filament\Traits\InteractsWithSiteSelector;
-use Feedbackie\Core\Traits\HasChartDateFilters;
 use Feedbackie\Core\Models\Report;
+use Feedbackie\Core\Traits\HasChartDateFilters;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;

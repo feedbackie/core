@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\SiteResource\Pages;
+namespace Feedbackie\Core\Filament\Resources\Sites\Pages;
 
+use Feedbackie\Core\Filament\Resources\Sites\SiteResource;
 use Filament\Actions\CreateAction;
-use Feedbackie\Core\Filament\Resources\SiteResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListSites extends ListRecords

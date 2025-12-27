@@ -2,39 +2,37 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources;
+namespace Feedbackie\Core\Filament\Resources\Feedback;
 
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Fieldset;
-use Filament\Actions\ViewAction;
-use Filament\Actions\DeleteAction;
-use Feedbackie\Core\Filament\Resources\FeedbackResource\Pages\ListFeedbacks;
+use Carbon\Carbon;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Enums\FeedbackOptions;
 use Feedbackie\Core\Enums\LanguageScores;
-use Feedbackie\Core\Filament\Schemas\MetadataSchema;
 use Feedbackie\Core\Filament\Filters\AnswerFilter;
 use Feedbackie\Core\Filament\Filters\CreatedAtFilter;
 use Feedbackie\Core\Filament\Filters\HasCommentFilter;
 use Feedbackie\Core\Filament\Filters\HasEmailFilter;
 use Feedbackie\Core\Filament\Filters\HasOptionsFilter;
 use Feedbackie\Core\Filament\Filters\OptionsFilter;
+use Feedbackie\Core\Filament\Resources\Feedback\Pages\ListFeedbacks;
+use Feedbackie\Core\Filament\Schemas\MetadataSchema;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
 use Feedbackie\Core\Models\Feedback;
 use Feedbackie\Core\Utils\Colors;
 use Feedbackie\Core\Utils\Date;
 use Feedbackie\Core\Utils\Hash;
-use Carbon\Carbon;
 use Feedbackie\Core\Utils\Icons;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\HtmlString;
 
 class FeedbackResource extends Resource
 {

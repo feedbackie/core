@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources;
+namespace Feedbackie\Core\Filament\Resources\ReportStats;
 
-use Filament\Schemas\Schema;
-use Filament\Tables\Columns\TextColumn;
-use Feedbackie\Core\Filament\Resources\ReportStatsResource\Pages\ListReportStats;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
-use Feedbackie\Core\Filament\Resources\ReportStatsResource\Pages;
+use Feedbackie\Core\Filament\Resources\ReportStats\Pages\ListReportStats;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Tables;
 use Illuminate\Auth\Access\Response;
 
 class ReportStatsResource extends Resource

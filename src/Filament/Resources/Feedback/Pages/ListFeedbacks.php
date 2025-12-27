@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\FeedbackResource\Pages;
+namespace Feedbackie\Core\Filament\Resources\Feedback\Pages;
 
 use Feedbackie\Core\Filament\Pages\SiteDependentListRecords;
-use Feedbackie\Core\Filament\Resources\FeedbackResource;
+use Feedbackie\Core\Filament\Resources\Feedback\FeedbackResource;
 
 class ListFeedbacks extends SiteDependentListRecords
 {

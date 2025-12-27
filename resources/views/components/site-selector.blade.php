@@ -1,4 +1,4 @@
-<div style="margin-left: 1rem;">
+<div style="margin-left: 1rem; float: left">
     <x-filament::input.wrapper
         class="fi-fo-select"
         :attributes="\Filament\Support\prepare_inherited_attributes($this->getExtraAttributeBag())"

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Pages;
+namespace Feedbackie\Core\Filament\Resources\FeedbackStats\Pages;
 
 use Feedbackie\Core\Filament\Pages\SiteDependentListRecords;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource\Widgets\FeedbackOverview;
-use Feedbackie\Core\Filament\Resources\FeedbackStatsResource;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\FeedbackStatsResource;
+use Feedbackie\Core\Filament\Resources\FeedbackStats\Widgets\FeedbackOverview;
 use Illuminate\Database\Eloquent\Model;
 
 class ListFeedbackStats extends SiteDependentListRecords

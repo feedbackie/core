@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Feedbackie\Core\Filament\Resources\SiteResource\Actions;
+namespace Feedbackie\Core\Filament\Resources\Sites\Actions;
 
-use Filament\Actions\Action;
 use Feedbackie\Core\Filament\Pages\SiteOverviewDashboard;
 use Feedbackie\Core\Services\SitesStorage;
+use Filament\Actions\Action;
 
 class OverviewAction extends Action
 {
