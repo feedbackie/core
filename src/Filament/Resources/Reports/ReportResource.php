@@ -70,6 +70,7 @@ class ReportResource extends Resource
             ->components([
                 Fieldset::make('Report')
                     ->label(\__('feedbackie-core::labels.resources.report.main_fieldset'))
+                    ->columnSpanFull()
                     ->schema([
                         RichEditor::make("full_text")
                             ->label(\__('feedbackie-core::labels.resources.report.full_text'))
@@ -91,6 +92,7 @@ class ReportResource extends Resource
                     ]),
                 Fieldset::make('Metadata')
                     ->label(\__('feedbackie-core::labels.metadata.metadata_fieldset'))
+                    ->columnSpanFull()
                     ->relationship('metadata')
                     ->schema(MetadataSchema::make()),
             ]);

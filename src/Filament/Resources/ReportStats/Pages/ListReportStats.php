@@ -25,15 +25,6 @@ class ListReportStats extends SiteDependentListRecords
         return $record->url;
     }
 
-    protected function getTableQuery(): Builder
-    {
-        return Report::select("url")
-            ->orderBy('total', 'desc')
-            ->groupBy("url")
-            ->selectRaw("count(*) as total")
-            ->selectRaw("count(*) FILTER (WHERE LENGTH(comment) > 0) AS comments_count");
-    }
-
     protected function getHeaderWidgets(): array
     {
         return [
