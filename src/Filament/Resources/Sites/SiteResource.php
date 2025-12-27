@@ -67,6 +67,7 @@ class SiteResource extends Resource
                     ->hiddenOn('create')
                     ->disabled(),
                 Fieldset::make("Settings")
+                    ->columnSpanFull()
                     ->label(\__('feedbackie-core::labels.resources.sites.settings'))
                     ->schema([
                         Toggle::make("report_enabled")
