@@ -7,6 +7,7 @@ namespace Feedbackie\Core\Filament\Resources\ReportStats;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\ReportStats\Pages\ListReportStats;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
+use Feedbackie\Core\Models\ReportStats;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
@@ -41,7 +42,7 @@ class ReportStatsResource extends Resource
 
     public static function getModel(): string
     {
-        return FeedbackieConfiguration::getReportModelClass();
+        return ReportStats::class;
     }
 
     public static function form(Schema $schema): Schema
@@ -75,7 +76,7 @@ class ReportStatsResource extends Resource
             ])
             ->toolbarActions([
             ])
-            ->defaultSort("total");
+            ->defaultSort("total", "desc");
     }
 
     public static function getRelations(): array

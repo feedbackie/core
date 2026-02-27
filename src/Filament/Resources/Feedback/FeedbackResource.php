@@ -70,6 +70,7 @@ class FeedbackResource extends Resource
         return $schema
             ->components([
                 Fieldset::make('Feedback')
+                    ->columnSpanFull()
                     ->label(\__('feedbackie-core::labels.resources.feedback.main_fieldset'))
                     ->schema([
                         TextInput::make("url")
@@ -118,6 +119,7 @@ class FeedbackResource extends Resource
                             }),
                     ]),
                 Fieldset::make('Metadata')
+                    ->columnSpanFull()
                     ->label(\__('feedbackie-core::labels.metadata.metadata_fieldset'))
                     ->relationship('metadata')
                     ->schema(MetadataSchema::make()),
