@@ -63,6 +63,11 @@ class Site extends Model implements HasUserScope
         "domain",
     ];
 
+    public $casts = [
+        'report_enabled' => 'boolean',
+        'feedback_enabled' => 'boolean',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(FeedbackieConfiguration::getUserModelClass(), 'user_id', 'id');

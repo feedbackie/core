@@ -58,9 +58,11 @@ class SiteResource extends Resource
             ->components([
                 TextInput::make("name")
                     ->label(\__('feedbackie-core::labels.resources.sites.name'))
+                    ->columnSpanFull()
                     ->required(),
                 TextInput::make("domain")
                     ->label(\__('feedbackie-core::labels.resources.sites.domain'))
+                    ->columnSpanFull()
                     ->required(),
                 TextInput::make('id')
                     ->label(\__('feedbackie-core::labels.resources.sites.id'))
