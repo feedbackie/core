@@ -19,7 +19,7 @@ class UrlFilter
                 TextInput::make('url')
                     ->label(\__('feedbackie-core::labels.filters.url')),
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): ?string {
                 if (empty($data['url']) === false) {
                     return \__('feedbackie-core::labels.filters.url') . ": " . $data['url'];
                 }

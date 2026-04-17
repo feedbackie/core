@@ -18,7 +18,7 @@ class HasOptionsFilter
                 Checkbox::make('has_options')
                     ->label(\__('feedbackie-core::labels.filters.has_options'))
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): string|array|null {
                 if (empty($data['has_options']) === false) {
                     return \__('feedbackie-core::labels.filters.has_options');
                 }

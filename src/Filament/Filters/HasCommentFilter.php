@@ -18,7 +18,7 @@ class HasCommentFilter
                 Checkbox::make('has_comment')
                     ->label(\__('feedbackie-core::labels.filters.has_comment'))
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): string|array|null {
                 if (empty($data['has_comment']) === false) {
                     return \__('feedbackie-core::labels.filters.has_comment');
                 }

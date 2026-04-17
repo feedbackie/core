@@ -6,10 +6,14 @@ namespace Feedbackie\Core\Services;
 
 use Feedbackie\Core\Context\ExtendedFeedbackDto;
 use Feedbackie\Core\Context\FeedbackDto;
+use Feedbackie\Core\Context\FeedbackStatsDto;
+use Feedbackie\Core\Contracts\CanRetrieveFeedbackStats;
 use Feedbackie\Core\Models\Feedback;
+use Feedbackie\Core\Models\FeedbackStats;
 use Feedbackie\Core\Models\Site;
+use Illuminate\Support\Facades\DB;
 
-class FeedbackService
+class FeedbackService implements CanRetrieveFeedbackStats
 {
     private MetadataService $metadataService;
 
@@ -32,7 +36,7 @@ class FeedbackService
         return $helpful;
     }
 
-    public function addAdditionalFeedback(Feedback $record, ExtendedFeedbackDto $dto)
+    public function addAdditionalFeedback(Feedback $record, ExtendedFeedbackDto $dto): void
     {
         $record->options = $dto->options;
         $record->comment = $dto->comment;
@@ -40,5 +44,22 @@ class FeedbackService
         $record->language_score = $dto->languageScore;
 
         $record->save();
+    }
+
+    public function getFeedbackStatsByUrl(string $url): FeedbackStatsDto
+    {
+        $feedbackTable = (new Feedback())->getTable();
+        $stats = DB::table($feedbackTable)
+            ->selectRaw("url")
+            ->selectRaw("count(*) FILTER (WHERE answer = 'yes') AS yes_count")
+            ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
+            ->groupBy("url")
+            ->where('url', $url)
+            ->first();
+
+        return new FeedbackStatsDto(
+            useful: $stats->yes_count ?? 0,
+            notUseful: $stats->no_count ?? 0,
+        );
     }
 }

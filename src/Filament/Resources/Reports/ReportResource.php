@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\Reports;
 
+use BackedEnum;
 use Carbon\Carbon;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Filters\CreatedAtFilter;
@@ -37,7 +38,7 @@ class ReportResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     public static function getNavigationGroup(): ?string
     {
@@ -74,7 +75,7 @@ class ReportResource extends Resource
                     ->schema([
                         RichEditor::make("full_text")
                             ->label(\__('feedbackie-core::labels.resources.report.full_text'))
-                            ->formatStateUsing(function ($state) {
+                            ->formatStateUsing(function ($state): string|array {
                                 $text = str_replace('[sel]', '<span style="color:red">', $state);
                                 $text = str_replace('[/sel]', '</span>', $text);
 
@@ -86,7 +87,7 @@ class ReportResource extends Resource
                             ->label(\__('feedbackie-core::labels.resources.report.comment')),
                         TextInput::make("created_at")
                             ->label(\__('feedbackie-core::labels.general.created_at'))
-                            ->formatStateUsing(function ($state) {
+                            ->formatStateUsing(function ($state): string {
                                 return (new Carbon($state))->format("Y-m-d H:i:s");
                             }),
                     ]),
@@ -104,7 +105,7 @@ class ReportResource extends Resource
             ->columns([
                 TextColumn::make("id")
                     ->label('#')
-                    ->formatStateUsing(function (Report $record) {
+                    ->formatStateUsing(function (Report $record): string {
                         $icons = '';
 
                         if (null !== $record->metadata?->country_code) {
@@ -138,7 +139,7 @@ class ReportResource extends Resource
                     ->label(\__('feedbackie-core::labels.resources.report.full_text'))
                     ->wrap(true)
                     ->html(true)
-                    ->formatStateUsing(function (string $state) {
+                    ->formatStateUsing(function (string $state): string|array {
                         $text = str_replace('[sel]', '<span style="color:red">', $state);
                         $text = str_replace('[/sel]', '</span>', $text);
 
@@ -148,7 +149,7 @@ class ReportResource extends Resource
                     ->label(\__('feedbackie-core::labels.resources.report.diff_text'))
                     ->html(true)
                     ->wrap(true)
-                    ->formatStateUsing(function (string $state) {
+                    ->formatStateUsing(function (string $state): string {
                         return $state;
                     }),
                 TextColumn::make("comment")

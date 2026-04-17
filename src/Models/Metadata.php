@@ -88,7 +88,7 @@ class Metadata extends Model implements HasUserAndSiteScope
         return $this->belongsTo(FeedbackieConfiguration::getSiteModelClass(), 'site_id', 'id');
     }
 
-    public function getHashAttribute(): ?string
+    protected function getHashAttribute(): ?string
     {
         return md5($this->attributes['ip'] . $this->attributes['user_agent']);
     }

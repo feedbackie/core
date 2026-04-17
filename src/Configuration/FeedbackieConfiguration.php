@@ -43,7 +43,7 @@ class FeedbackieConfiguration
         return config('feedbackie.api.reports_middleware');
     }
 
-    public static function isRouteSiteDependent()
+    public static function isRouteSiteDependent(): bool
     {
         $siteDependentRoutes = [
             'dashboard',

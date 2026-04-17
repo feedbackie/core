@@ -21,7 +21,7 @@ class OverviewAction extends Action
         $action->action(function ($record) {
             $siteStorage = app()->get(SitesStorage::class);
             $siteStorage->updateCurrentSiteId($record->getKey());
-            return redirect()->route(SiteOverviewDashboard::getRouteName());
+            return to_route(SiteOverviewDashboard::getRouteName());
         });
 
         return $action;

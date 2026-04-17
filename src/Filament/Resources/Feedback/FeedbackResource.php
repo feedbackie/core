@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\Feedback;
 
+use BackedEnum;
 use Carbon\Carbon;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Enums\FeedbackOptions;
@@ -38,7 +39,7 @@ class FeedbackResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-question-mark-circle';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function getNavigationGroup(): ?string
     {
@@ -88,7 +89,7 @@ class FeedbackResource extends Resource
                             ->label(\__('feedbackie-core::labels.resources.feedback.answer')),
                         Select::make("options")
                             ->label(\__('feedbackie-core::labels.resources.feedback.options'))
-                            ->formatStateUsing(function ($state) {
+                            ->formatStateUsing(function ($state): string|array {
                                 if ($state == null) {
                                     return "";
                                 }
@@ -114,7 +115,7 @@ class FeedbackResource extends Resource
                             ->label(\__('feedbackie-core::labels.resources.feedback.email')),
                         TextInput::make("created_at")
                             ->label(\__('feedbackie-core::labels.general.created_at'))
-                            ->formatStateUsing(function ($state) {
+                            ->formatStateUsing(function ($state): string {
                                 return (new Carbon($state))->format("Y-m-d H:i:s");
                             }),
                     ]),
@@ -132,7 +133,7 @@ class FeedbackResource extends Resource
             ->columns([
                 TextColumn::make("id")
                     ->label('#')
-                    ->formatStateUsing(function (Feedback $record) {
+                    ->formatStateUsing(function (Feedback $record): string {
                         $icons = '';
 
                         if (null !== $record->metadata?->country_code) {
@@ -175,7 +176,7 @@ class FeedbackResource extends Resource
                 TextColumn::make("metadata.ls")
                     ->label(\__('feedbackie-core::labels.metadata.duration'))
                     ->toggleable(true, false)
-                    ->formatStateUsing(function (?Feedback $record) {
+                    ->formatStateUsing(function (?Feedback $record): string {
                         if ($record === null) {
                             return "";
                         }

@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+use Feedbackie\Core\Http\Controllers\Api\Reports\SubmitReportController;
+use Feedbackie\Core\Configuration\FeedbackieConfiguration;
+use Feedbackie\Core\Utils\Uuid;
+use Feedbackie\Core\Http\Controllers\Api\Feedback\SubmitFeedbackController;
+use Feedbackie\Core\Http\Controllers\Api\Feedback\UpdateFeedbackController;
+use Feedbackie\Core\Http\Controllers\Api\Health\SiteHealthController;
+use Feedbackie\Core\Http\Controllers\Api\Health\HealthController;
+use Feedbackie\Core\Http\Controllers\Api\Feedback\StatsFeedbackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,33 +23,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => 'api'], function (): void {
 
     Route::post(
         '/site/{site}/report',
-        \Feedbackie\Core\Http\Controllers\Api\Reports\SubmitReportController::class
+        SubmitReportController::class
     )
-        ->middleware(\Feedbackie\Core\Configuration\FeedbackieConfiguration::getReportsApiMiddlewareList())
-        ->where("site", \Feedbackie\Core\Utils\Uuid::getRegex());
+        ->middleware(FeedbackieConfiguration::getReportsApiMiddlewareList())
+        ->where("site", Uuid::getRegex());
 
     Route::post(
         '/site/{site}/feedback',
-        \Feedbackie\Core\Http\Controllers\Api\Feedback\SubmitFeedbackController::class
+        SubmitFeedbackController::class
     )
-        ->middleware(\Feedbackie\Core\Configuration\FeedbackieConfiguration::getFeedbacksApiMiddlewareList())
-        ->where("site", \Feedbackie\Core\Utils\Uuid::getRegex());
+        ->middleware(FeedbackieConfiguration::getFeedbacksApiMiddlewareList())
+        ->where("site", Uuid::getRegex());
+
+    Route::get(
+        '/site/{site}/feedback',
+        StatsFeedbackController::class
+    )
+        ->where("site", Uuid::getRegex());
+
 
     Route::put(
         '/site/{site}/feedback/{id}',
-        \Feedbackie\Core\Http\Controllers\Api\Feedback\UpdateFeedbackController::class
+        UpdateFeedbackController::class
     )
-        ->where("site", \Feedbackie\Core\Utils\Uuid::getRegex())
-        ->where("id", \Feedbackie\Core\Utils\Uuid::getRegex());
+        ->where("site", Uuid::getRegex())
+        ->where("id", Uuid::getRegex());
 
     Route::get(
         '/site/{site}/health',
-        \Feedbackie\Core\Http\Controllers\Api\Health\SiteHealthController::class,
-    )->where("site", \Feedbackie\Core\Utils\Uuid::getRegex());
+        SiteHealthController::class,
+    )->where("site", Uuid::getRegex());
 
-    Route::get("/health", \Feedbackie\Core\Http\Controllers\Api\Health\HealthController::class);
+    Route::get("/health", HealthController::class);
 });

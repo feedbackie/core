@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\Sites;
 
+use BackedEnum;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\Sites\Actions\CodeAction;
 use Feedbackie\Core\Filament\Resources\Sites\Actions\OverviewAction;
@@ -30,7 +31,7 @@ class SiteResource extends Resource
 
     protected static ?int $navigationSort = -3;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-globe-europe-africa';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-globe-europe-africa';
 
     public static function getModel(): string
     {
@@ -86,7 +87,7 @@ class SiteResource extends Resource
     {
         return $table
             ->recordAction(OverviewAction::class)
-            ->modifyQueryUsing(function (Builder $query) {
+            ->modifyQueryUsing(function (Builder $query): void {
                 $query
                     ->withCount("reports")
                     ->withCount("feedbacks");

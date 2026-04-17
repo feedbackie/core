@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\FeedbackStats;
 
+use BackedEnum;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\FeedbackStats\Pages\ListFeedbackStats;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
@@ -23,7 +24,7 @@ class FeedbackStatsResource extends Resource
 
     protected static ?string $model = FeedbackStats::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chart-bar-square';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-chart-bar-square';
 
     public static function getNavigationGroup(): ?string
     {
@@ -57,7 +58,7 @@ class FeedbackStatsResource extends Resource
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.no_count')),
                 TextInput::make("avg_score")
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.avg_score'))
-                    ->formatStateUsing(function ($state) {
+                    ->formatStateUsing(function ($state): float {
                         return round(floatval($state), 2);
                     }),
                 Select::make("comments")

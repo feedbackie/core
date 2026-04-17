@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Filters;
 
+use Illuminate\Support\Facades\Date;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -31,12 +32,12 @@ class CreatedAtFilter
                     ->placeholder(\__('feedbackie-core::labels.filters.select_period')),
                 DatePicker::make('created_from')
                     ->label(\__('feedbackie-core::labels.filters.created_from'))
-                    ->visible(fn($get) => $get('period') === 'custom'),
+                    ->visible(fn($get): bool => $get('period') === 'custom'),
                 DatePicker::make('created_until')
                     ->label(\__('feedbackie-core::labels.filters.created_until'))
-                    ->visible(fn($get) => $get('period') === 'custom'),
+                    ->visible(fn($get): bool => $get('period') === 'custom'),
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): null|string|array {
                 if (empty($data['period'])) {
                     return null;
                 }
@@ -105,7 +106,7 @@ class CreatedAtFilter
 
     private static function getPeriodDates(string $period): array
     {
-        $now = Carbon::now();
+        $now = Date::now();
 
         return match ($period) {
             'today' => [

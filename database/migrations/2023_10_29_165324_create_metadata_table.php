@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('metadata', function (Blueprint $table) {
+        Schema::create('metadata', function (Blueprint $table): void {
             $table->id();
             $table->foreignUuid("site_id")
                 ->references("id")

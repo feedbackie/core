@@ -11,7 +11,7 @@ class SiteHealthController extends Controller
 {
     public function __invoke(string $id)
     {
-        $site = Site::findOrFail($id);
+        $site = Site::query()->findOrFail($id);
 
         return response()->json([
             "success" => true

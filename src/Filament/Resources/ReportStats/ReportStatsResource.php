@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Filament\Resources\ReportStats;
 
+use BackedEnum;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Filament\Resources\ReportStats\Pages\ListReportStats;
 use Feedbackie\Core\Filament\Traits\HasLabelsWithoutTitleCase;
@@ -18,7 +19,7 @@ class ReportStatsResource extends Resource
 {
     use HasLabelsWithoutTitleCase;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chart-pie';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-chart-pie';
 
     public static function getNavigationGroup(): ?string
     {

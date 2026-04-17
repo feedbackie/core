@@ -11,7 +11,7 @@ trait ScopedByCurrentSite
 {
     public function table(Table $table): Table
     {
-        $table->modifyQueryUsing(function (Builder $query) {
+        $table->modifyQueryUsing(function (Builder $query): void {
             $query->currentSite();
         });
         return parent::table($table);

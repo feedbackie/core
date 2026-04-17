@@ -20,7 +20,7 @@ class OptionsFilter
                     ->label(\__('feedbackie-core::labels.filters.options'))
                     ->options(FeedbackOptions::toArray()),
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): ?string {
                 if (empty($data['selected_option']) === false) {
                     return \__('feedbackie-core::labels.filters.option') . ": " . FeedbackOptions::from($data['selected_option'])->label();
                 }

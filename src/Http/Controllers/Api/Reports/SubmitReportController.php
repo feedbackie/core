@@ -19,7 +19,7 @@ class SubmitReportController extends Controller
     public function __invoke(string $site, SubmitReportRequest $request, ReportsService $service)
     {
         /** @var Site $siteEntity */
-        $siteEntity = Site::findOrFail($site);
+        $siteEntity = Site::query()->findOrFail($site);
 
         if (false === $siteEntity->report_enabled) {
             throw new AccessDeniedHttpException();

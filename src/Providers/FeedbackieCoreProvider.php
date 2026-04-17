@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Providers;
 
+use Feedbackie\Core\Contracts\CanRetrieveFeedbackStats;
+use Feedbackie\Core\Services\FeedbackService;
 use Feedbackie\Core\Services\GeoipService;
 use Feedbackie\Core\Services\MetadataService;
 use Feedbackie\Core\Services\SitesStorage;
@@ -87,17 +89,19 @@ class FeedbackieCoreProvider extends ServiceProvider
 
         FilamentColor::register(Colors::getColorsDefinition());
 
-        $this->app->singleton(GeoipService::class, static function () {
+        $this->app->singleton(GeoipService::class, static function (): GeoipService {
             return new GeoipService();
         });
-        $this->app->singleton(MetadataService::class, function () {
+        $this->app->singleton(MetadataService::class, function (): MetadataService {
             return new MetadataService(
                 $this->app->get(GeoipService::class),
                 $this->app->get(Request::class),
             );
         });
-        $this->app->singleton(SitesStorage::class, static function () {
+        $this->app->singleton(SitesStorage::class, static function (): SitesStorage {
             return new SitesStorage();
         });
+
+        $this->app->bind(CanRetrieveFeedbackStats::class, FeedbackService::class);
     }
 }

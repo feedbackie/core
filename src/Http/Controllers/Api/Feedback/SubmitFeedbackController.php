@@ -18,7 +18,7 @@ class SubmitFeedbackController extends Controller
         FeedbackService       $service)
     {
         /** @var Site $siteEntity */
-        $siteEntity = Site::findOrFail($site);
+        $siteEntity = Site::query()->findOrFail($site);
 
         if (false === $siteEntity->feedback_enabled) {
             throw new AccessDeniedHttpException();

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait HasCurrentSiteScope
 {
-    public function scopeCurrentSite(Builder $query)
+    protected function scopeCurrentSite(Builder $query): Builder
     {
         $service = app()->get(SitesStorage::class);
 

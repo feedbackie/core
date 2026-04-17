@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Feedbackie\Core\Http\Livewire;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Feedbackie\Core\Models\Site;
 use Feedbackie\Core\Services\SitesStorage;
 use Illuminate\View\ComponentAttributeBag;
@@ -16,12 +18,12 @@ class SiteSelector extends Component
     const COMPONENT_NAME = 'feedbackie-core::site-selector';
     const SITE_SELECTED_EVENT = 'siteSelected';
 
-    public function mount()
+    public function mount(): void
     {
-        $this->siteId = app(SitesStorage::class)->resolveCurrentSiteId();
+        $this->siteId = resolve(SitesStorage::class)->resolveCurrentSiteId();
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('feedbackie-core::components.site-selector', [
             'placeholder' => $this->getPlaceholder(),
@@ -37,7 +39,7 @@ class SiteSelector extends Component
     public function getSites(): array
     {
         return Site::query()->get()
-            ->map(function (Site $site) {
+            ->map(function (Site $site): Site {
                 $site->name = $site->name . ' (' . $site->domain . ')';
 
                 return $site;
@@ -51,10 +53,10 @@ class SiteSelector extends Component
         return new ComponentAttributeBag();
     }
 
-    public function siteSelected()
+    public function siteSelected(): void
     {
         $this->dispatch(self::SITE_SELECTED_EVENT);
 
-        app(SitesStorage::class)->updateCurrentSiteId($this->siteId);
+        resolve(SitesStorage::class)->updateCurrentSiteId($this->siteId);
     }
 }

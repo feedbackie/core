@@ -18,7 +18,7 @@ class HasEmailFilter
                 Checkbox::make('has_email')
                     ->label(\__('feedbackie-core::labels.filters.has_email')),
             ])
-            ->indicateUsing(function ($data) {
+            ->indicateUsing(function (array $data): string|array|null {
                 if (empty($data['has_email']) === false) {
                     return \__('feedbackie-core::labels.filters.has_email');
                 }

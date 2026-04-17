@@ -85,8 +85,7 @@ class Site extends Model implements HasUserScope
 
     public function lastEvent(): HasOne
     {
-        return $this->hasOne(FeedbackieConfiguration::getMetadataModelClass(), 'site_id', 'id')
-            ->orderByDesc("created_at")
+        return $this->hasOne(FeedbackieConfiguration::getMetadataModelClass(), 'site_id', 'id')->latest()
             ->limit(1);
     }
 

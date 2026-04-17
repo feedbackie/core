@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table): void {
             $table->uuid('id');
             $table->foreignUuid("site_id")
                 ->nullable()

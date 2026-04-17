@@ -20,8 +20,8 @@ class UpdateFeedbackController extends Controller
         FeedbackService $service
     )
     {
-        $site = Site::findOrFail($site);
-        $record = Feedback::findOrFail($id);
+        $site = Site::query()->findOrFail($site);
+        $record = Feedback::query()->findOrFail($id);
 
         if ($site->getKey() !== $record->site->getKey()) {
             throw new AccessDeniedHttpException();

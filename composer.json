@@ -4,9 +4,9 @@
     "description": "Core components for Feedbackie App",
     "type": "library",
     "require": {
-        "php": "^8.3",
+        "php": "^8.5",
         "ext-curl": "*",
-        "laravel/framework": "^11.0|^12.0",
+        "laravel/framework": "^11.0|^12.0|^13.0",
         "filament/filament": "^4.0",
         "livewire/livewire": "^3.0",
         "geoip2/geoip2": "^2.0",

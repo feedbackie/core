@@ -25,7 +25,7 @@ class SitesStorage
         }
     }
 
-    public function updateCurrentSiteId(string $siteId)
+    public function updateCurrentSiteId(string $siteId): void
     {
         $this->currentSiteId = $siteId;
 
@@ -39,7 +39,7 @@ class SitesStorage
 
     public function first(): Site
     {
-        return Site::firstOr(function () {
+        return Site::query()->firstOr(function (): void {
             throw new RuntimeException("There are no sites!");
         });
     }

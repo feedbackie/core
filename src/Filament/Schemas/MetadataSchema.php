@@ -30,7 +30,7 @@ class MetadataSchema
                 ->label(\__('feedbackie-core::labels.metadata.user_agent')),
             TextInput::make("ls")
                 ->label(\__('feedbackie-core::labels.metadata.duration'))
-                ->formatStateUsing(function (?Metadata $record) {
+                ->formatStateUsing(function (?Metadata $record): string {
                     if ($record === null) {
                         return "";
                     }
