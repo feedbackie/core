@@ -2,7 +2,7 @@ let basicTemplate = `
 <div class="sm-helpful-popup">
     <div class="sm-question-popup" id="sm-question-popup">
         <span class="close" id="sm-question-close-button">&times;</span>
-        <span class="sm-question-label">{{was_this_article_helpful}}</span>
+        <span id="sm-question-label" class="sm-question-label">{{was_this_article_helpful}}</span>
         <span class="sm-question-answers">
             <button class="sm-question-answer" id="sm-question-yes-answer" data-answer="yes">{{yes}}</button>
             <button class="sm-question-answer" id="sm-question-no-answer" data-answer="no">{{no}}</button>
@@ -15,25 +15,15 @@ let basicTemplate = `
 let extendedYesTemplate = `
 <div class="sm-helpful-extended-popup" id="sm-helpful-extended-popup">
     <div class="sm-extended-feedback-header">
+        <div class="sm-extended-feedback-title-container">
         <label class="sm-extended-feedback-title" for="sm-feedback-comment">
             <b>{{thank_you_any_more_feedback}}</b> {{it_will_help_to_improve_the_article_in_the_future}}
         </label>
+        </div>
         <span class="close" id="sm-extended-close-button">&times;</span>
     </div>
     <form>
     <div class="sm-extended-feedback-body">
-        <fieldset id="sm-extended-language-star-rating" data-star-rating-question="How satisfied are you with the translation quality?">
-                <legend class="sm-helpful-extended-label">{{how_satisfied_are_you_with_the_translation_quality}}</legend>
-                <div id="sm-helpful-language-stars">
-                    <span id="rating_-1" tabindex="0" data-startindex="0" data-stardescription="{{very_not_satisfied}}" aria-label="{{very_not_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_0" tabindex="0" data-startindex="1" data-stardescription="{{not_satisfied}}" aria-label="{{not_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_1" tabindex="0" data-startindex="2" data-stardescription="{{neutral}}" aria-label="{{neutral}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_2" tabindex="0" data-startindex="3" data-stardescription="{{satisfied}}" aria-label="{{satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_3" tabindex="0" data-startindex="4" data-stardescription="{{very_satisfied}}" aria-label="{{very_not_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <label id="sm-helpful-star-description"></label>
-                </div>
-            </fieldset>
-
             <fieldset>
             <legend class="sm-helpful-extended-label">{{what_affected_your_experience}}</legend>
                 <label class="sm-experience-labels">
@@ -69,15 +59,11 @@ let extendedYesTemplate = `
                 <label class="sm-helpful-comment-label" for="sm-helpful-comment">{{any_additional_feedback_optional}}</label>
                 <textarea id="sm-helpful-comment" name="feedback-comment" rows="5" cols="40" maxlength="250" placeholder="{{any_helpful_information}}"></textarea>
             </div>
-            <div id="sm-email-container" class="sm-helpful-email">
-                <label class="sm-helpful-comment-label" for="sm-helpful-email">{{allow_follow_back_by_email_optional}}</label>
-                <input id="sm-helpful-email" name="feedback-email"/>
-            </div>
+            <div class="sm-helpful-statistics"></div>
     </div>
     <div class="sm-extended-feedback-footer">
-        <button id="sm-submit-helpful-button" class="sm-submit-buttons" type="submit" disabled="">{{submit_feedback}}</button>
+        <button id="sm-submit-helpful-button" class="sm-submit-buttons" type="submit">{{submit_feedback}}</button>
         <div class="sm-powered-by">
-            <a href="https://feedbackie.app" target="_blank" rel="noopener noreferrer">Powered by Feedbackie</a>
         </div>
     </div>
     </form>
@@ -87,25 +73,15 @@ let extendedYesTemplate = `
 let extendedNoTemplate = `
 <div class="sm-helpful-extended-popup" id="sm-helpful-extended-popup">
     <div class="sm-extended-feedback-header">
-        <label class="sm-extended-feedback-title" for="sm-helpful-comment">
-            <b>{{can_you_help_us_improve}}</b>  {{it_will_help_to_improve_the_article_in_the_future}}
-        </label>
+        <div class="sm-extended-feedback-title-container">
+            <label class="sm-extended-feedback-title" for="sm-helpful-comment">
+                <b>{{can_you_help_us_improve}}</b> {{it_will_help_to_improve_the_article_in_the_future}}
+            </label>
+        </div>
         <span class="close" id="sm-extended-close-button">&times;</span>
     </div>
     <form>
     <div class="sm-extended-feedback-body">
-        <fieldset id="sm-extended-language-star-rating" data-star-rating-question="How satisfied are you with the translation quality?">
-                <legend class="sm-helpful-extended-label">{{how_satisfied_are_you_with_the_translation_quality}}</legend>
-                <div id="sm-helpful-language-stars">
-                    <span id="rating_0" tabindex="0" data-startindex="0" data-stardescription="{{very_not_satisfied}}" aria-label="{{very_not_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_1" tabindex="0" data-startindex="1" data-stardescription="{{not_satisfied}}" aria-label="{{not_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_2" tabindex="0" data-startindex="2" data-stardescription="{{neutral}}" aria-label="{{neutral}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_3" tabindex="0" data-startindex="3" data-stardescription="{{satisfied}}" aria-label="{{satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <span id="rating_4" tabindex="0" data-startindex="4" data-stardescription="{{very_satisfied}}" aria-label="{{very_satisfied}}" role="menuitem" class="sm-helpful-star">★</span>
-                    <label id="sm-helpful-star-description"></label>
-                </div>
-            </fieldset>
-
             <fieldset>
             <legend class="sm-helpful-extended-label">{{what_affected_your_experience}}</legend>
                  <label class="sm-experience-labels">
@@ -142,22 +118,28 @@ let extendedNoTemplate = `
                 </label>
             </fieldset>
             <div id="sm-helpful-comment-container" class="sm-helpful-comment">
-                 <label class="sm-helpful-comment-label" for="sm-helpful-comment">{{any_additional_feedback_optional}}</label>
+                 <p>
+                    <label class="sm-helpful-comment-label" for="sm-helpful-comment">{{any_additional_feedback_optional}}</label>
+                 </p>
                  <textarea id="sm-helpful-comment" name="feedback-comment" rows="6" cols="40" maxlength="9999" placeholder="{{any_helpful_information}}"></textarea>
             </div>
-            <div id="sm-email-container" class="sm-helpful-email">
-                 <label class="sm-helpful-email-label" for="sm-helpful-email">{{allow_follow_back_by_email_optional}}</label>
-                 <input id="sm-helpful-email" name="feedback-email"/>
-            </div>
+            <div class="sm-helpful-statistics"></div>
     </div>
     <div class="sm-extended-feedback-footer">
-        <button id="sm-submit-helpful-button" class="sm-submit-buttons" type="submit" disabled="">{{submit_feedback}}</button>
+        <button id="sm-submit-helpful-button" class="sm-submit-buttons" type="submit">{{submit_feedback}}</button>
         <div class="sm-powered-by">
-            <a href="https://feedbackie.app" target="_blank" rel="noopener noreferrer">Powered by Feedbackie</a>
         </div>
     </div>
     </form>
 </div>
 `
 
-export {basicTemplate, extendedNoTemplate, extendedYesTemplate}
+let statisticsTemplate = `
+    <p>{{users_feedback_stats}}:</p>
+    <ul style="padding-left: 25px;">
+    <li>{{useful_count_label}}: %useful_count%</li>
+    <li>{{not_useful_count_label}}: %not_useful_count%</li>
+    </ul>
+`
+
+export {basicTemplate, extendedNoTemplate, extendedYesTemplate, statisticsTemplate}

@@ -55,14 +55,6 @@ return [
         'bad_color_scheme' => 'Bad color scheme',
     ],
 
-    'language_scores' => [
-        'very_unsatisfied' => 'Very unsatisfied',
-        'unsatisfied' => 'Unsatisfied',
-        'neutral' => 'Neutral',
-        'satisfied' => 'Satisfied',
-        'very_satisfied' => 'Very satisfied',
-    ],
-
     'pages' => [
         'overview' => [
             'title' => 'Overview',
@@ -88,7 +80,7 @@ return [
     ],
     'resources' => [
         'feedback' => [
-            'navigation_group' => 'Feedback',
+            'navigation_group' => 'Helpfulness',
             'navigation_label' => 'All Answers',
             'record_label' => 'Feedback',
             'record_plural_label' => 'Feedback',
@@ -96,14 +88,13 @@ return [
             'url' => 'Url',
             'answer' => 'Answer',
             'options' => 'Options',
-            'language_score' => 'Language Quality Score',
             'comment' => 'Comment',
             'email' => 'Email',
         ],
 
         'feedback_stats' => [
-            'navigation_group' => 'Feedback',
-            'navigation_label' => 'Feedback Stats',
+            'navigation_group' => 'Helpfulness',
+            'navigation_label' => 'Helpfulness Stats',
             'record_label' => 'Feedback',
             'record_plural_label' => 'Feedback',
             'url' => 'Url',
@@ -111,8 +102,6 @@ return [
             'yes_count' => 'Answered "Yes"',
             'no_count' => 'Answered "No"',
             'options' => 'Options',
-            'avg_score' => 'Avg Language Score',
-            'language_scores' => 'Language Scores',
             'comments' => 'Comments',
             'total_feedback_count' => 'Total Answers',
             'selected_options_count' => 'Has Selected Options',
@@ -120,7 +109,7 @@ return [
         ],
 
         'report' => [
-            'navigation_group' => 'Reports',
+            'navigation_group' => 'Mistakes',
             'navigation_label' => 'All Reports',
             'record_label' => 'Report',
             'record_plural_label' => 'Reports',
@@ -133,7 +122,7 @@ return [
         ],
 
         'report_stats' => [
-            'navigation_group' => 'Reports',
+            'navigation_group' => 'Mistakes',
             'navigation_label' => 'Reports Stats',
             'record_label' => 'Report',
             'record_plural_label' => 'Reports',

@@ -16,6 +16,8 @@ class SiteCodeBuilder
     private ?int $feedbackStickyRatio = null;
     private ?string $baseUrl = null;
     private ?string $locale = null;
+    private ?float $stickyRatio = null;
+    private bool $displayPoweredBy = false;
 
     public function __construct(string $siteId)
     {
@@ -64,6 +66,20 @@ class SiteCodeBuilder
         return $this;
     }
 
+    public function stickyRato(float $ratio): self
+    {
+        $this->stickyRatio = $ratio;
+
+        return $this;
+    }
+
+    public function displayPoweredBy(bool $flag = true): self
+    {
+        $this->displayPoweredBy = $flag;
+
+        return $this;
+    }
+
     public function build(): string
     {
         $rendered = view("feedbackie-core::sites.code")
@@ -73,6 +89,8 @@ class SiteCodeBuilder
                 'reportEnabled' => $this->isReportEnabled,
                 'feedbackAnchorSelector' => $this->feedbackAnchorSelector,
                 'reportAnchorSelector' => $this->reportAnchorSelector,
+                'stickyRatio' => $this->stickyRatio,
+                'displayPoweredBy' => $this->displayPoweredBy,
                 'baseUrl' => $this->baseUrl,
                 'locale' => $this->locale,
             ])

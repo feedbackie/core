@@ -56,19 +56,11 @@ class FeedbackStatsResource extends Resource
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.yes_count')),
                 TextInput::make("no_count")
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.no_count')),
-                TextInput::make("avg_score")
-                    ->label(\__('feedbackie-core::labels.resources.feedback_stats.avg_score'))
-                    ->formatStateUsing(function ($state): float {
-                        return round(floatval($state), 2);
-                    }),
                 Select::make("comments")
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.comments'))
                     ->multiple(),
                 Select::make("options")
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.options'))
-                    ->multiple(),
-                Select::make("language_scores")
-                    ->label(\__('feedbackie-core::labels.resources.feedback_stats.language_scores'))
                     ->multiple(),
             ]);
     }
@@ -93,9 +85,6 @@ class FeedbackStatsResource extends Resource
                 TextColumn::make("no_count")
                     ->label(\__('feedbackie-core::labels.resources.feedback_stats.no_count'))
                     ->sortable(),
-                TextColumn::make("avg_score")->sortable()
-                    ->label(\__('feedbackie-core::labels.resources.feedback_stats.avg_score'))
-                    ->numeric(2),
             ])
             ->filters([
                 //

@@ -299,12 +299,15 @@
 
 </article>
 
+
 {!! (new \Feedbackie\Core\Services\Builders\SiteCodeBuilder(\Feedbackie\Core\Models\Site::first()?->getKey()))
     ->feedbackEnabled(true)
     ->feedbackAnchorSelector("helpful-popup")
     ->reportEnabled(false)
     ->baseUrl(config('app.url'))
     ->locale('en')
+    ->stickyRato(1.0)
+    ->displayPoweredBy(true)
     ->build()
 !!}
 

@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string $url
  * @property string $url_hash
  * @property string|null $hash
- * @property int|null $language_score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int $user_id
@@ -44,7 +43,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @method static Builder<static>|Feedback whereEmail($value)
  * @method static Builder<static>|Feedback whereHash($value)
  * @method static Builder<static>|Feedback whereId($value)
- * @method static Builder<static>|Feedback whereLanguageScore($value)
  * @method static Builder<static>|Feedback whereOptions($value)
  * @method static Builder<static>|Feedback whereSiteId($value)
  * @method static Builder<static>|Feedback whereUpdatedAt($value)
@@ -71,7 +69,6 @@ class Feedback extends Model implements HasUserAndSiteScope
         'url',
         'url_hash',
         'hash',
-        'language_score',
         'email',
         "created_at",
         "updated_at",

@@ -21,10 +21,9 @@
 }
 
 .sm-extended-feedback-header {
-    padding: 15px 30px 0 30px;
+    padding: 15px 20px 0 30px;
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     min-height: 50px;
     flex-shrink: 0;
@@ -40,13 +39,18 @@
     color: #363636;
 }
 
+.sm-extended-feedback-title-container {
+    display: flex;
+    align-items: center;
+}
+
 .sm-extended-feedback-body {
     padding: 0 30px 15px 30px;
     flex: 1;
     overflow-y: auto;
     min-height: 0;
     scrollbar-width: thin;
-    scrollbar-color: #393939 #7F7F7F;
+    scrollbar-color: #888888 #d6d6d6;
     background: #fafafa;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
@@ -72,14 +76,6 @@
     text-align: right;
 }
 
-.sm-footer-close {
-    margin: 0;
-    padding: 0;
-    flex-shrink: 0;
-    position: static;
-    float: none;
-}
-
 .sm-helpful-extended-popup fieldset, .sm-not-helpful-extended-popup fieldset {
     display: flex;
     flex-direction: column;
@@ -93,7 +89,6 @@
 #sm-helpful-comment-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 18px;
 }
 
 label.sm-helpful-comment {
@@ -101,46 +96,20 @@ label.sm-helpful-comment {
     margin-bottom: 5px;
 }
 
-#sm-email-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 18px;
-}
-
-.sm-helpful-email-label {
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #363636;
-    letter-spacing: 0.01em;
-}
-
-label.sm-helpful-email, .sm-helpful-comment-label {
+.sm-helpful-comment-label {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 15px !important;
     font-size: 16px;
     font-weight: 500;
     color: #363636;
     letter-spacing: 0.01em;
 }
-input#sm-helpful-email, input.sm-helpful-email {
-    padding: 12px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 15px;
-    background: #fff;
-    color: #222;
-    box-shadow: 0 1px 2px rgba(60,60,60,0.04);
-    transition: border 0.2s, box-shadow 0.2s;
-    outline: none;
-    margin-top: 3px;
+
+#sm-helpful-comment {
+    margin-top: 15px;
+    margin-left: 5px;
 }
-input#sm-helpful-email:focus, input.sm-helpful-email:focus {
-    border: 1.5px solid #545454;
-    box-shadow: 0 2px 8px rgba(235, 169, 37, 0.1);
-    background: #fff;
-}
+
 #sm-helpful-comment-container textarea,
 .sm-helpful-comment textarea,
 textarea#sm-helpful-comment {
@@ -150,13 +119,14 @@ textarea#sm-helpful-comment {
     font-size: 15px;
     background: #fff;
     color: #222;
-    box-shadow: 0 1px 2px rgba(60,60,60,0.04);
+    box-shadow: 0 1px 2px rgba(60, 60, 60, 0.04);
     transition: border 0.2s, box-shadow 0.2s;
     outline: none;
     resize: vertical;
     min-height: 80px;
     margin-top: 3px;
 }
+
 #sm-helpful-comment-container textarea:focus,
 .sm-helpful-comment textarea:focus,
 textarea#sm-helpful-comment:focus {
@@ -167,11 +137,12 @@ textarea#sm-helpful-comment:focus {
 
 .sm-experience-labels {
     margin-bottom: 4px;
-    font-size: 15px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
     gap: 8px;
+    padding-left: 10px;
 }
 
 .sm-experience-checkbox {
@@ -188,20 +159,12 @@ textarea#sm-helpful-comment:focus {
     border: none;
     border-radius: 6px;
     font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-    transition: background 0.2s, box-shadow 0.2s, opacity 0.2s;
-    opacity: 1;
+    background-color: #dbdbdb;
 }
-.sm-submit-buttons:active:not(:disabled) {
-    opacity: 0.88;
-}
-.sm-submit-buttons:disabled {
-    background: #a1a1aa;
-    cursor: not-allowed;
-    opacity: 0.7;
+
+.sm-submit-buttons:hover {
+    background-color: #a9a9a9;
 }
 
 .close {
@@ -211,6 +174,10 @@ textarea#sm-helpful-comment:focus {
     cursor: pointer;
     font-size: 20px;
     line-height: 1;
+}
+
+#sm-question-close-button {
+    visibility: hidden;
 }
 
 .sm-extended-feedback-header .close {
@@ -250,33 +217,21 @@ textarea#sm-helpful-comment:focus {
     z-index: 999;
 }
 
-button.sm-question-answer{
+button.sm-question-answer {
     cursor: pointer;
+    padding: 6px 16px;
+    border: none;
+    background-color: #dbdbdb;
+}
+
+button.sm-question-answer:hover {
+    background-color: #a9a9a9;
 }
 
 .sm-question-answers {
     margin-left: auto;
     margin-right: 30px;
     white-space: nowrap;
-}
-
-.sm-helpful-star {
-    font-size: 30px;
-    color: #ccced1;
-    cursor: pointer;
-}
-
-.sm-helpful-star-selected {
-    color: grey;
-}
-
-#sm-helpful-star-description, #sm-not-helpful-star-description {
-    margin: auto;
-    margin-left: 15px;
-}
-
-#sm-helpful-language-stars, #sm-not-helpful-language-stars {
-    display: flex;
 }
 
 .sm-powered-by {
@@ -296,6 +251,14 @@ button.sm-question-answer{
     text-decoration: underline;
 }
 
+@media (max-width: 480px) {
+    .sm-question-answers {
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .sm-question-popup, .sm-helpful-extended-popup, .sm-not-helpful-extended-popup {
         background: #080808 !important;
@@ -313,6 +276,7 @@ button.sm-question-answer{
         color: #ccced1 !important;
         border-top: 1px solid #333 !important;
         border-bottom: 1px solid #333 !important;
+        scrollbar-color: #393939 #7F7F7F;
     }
 
     .sm-extended-feedback-title {
@@ -324,12 +288,10 @@ button.sm-question-answer{
     }
 
     .sm-helpful-extended-label,
-    .sm-helpful-comment-label,
-    .sm-helpful-email-label,
-    label.sm-helpful-email {
+    .sm-helpful-comment-label {
         color: #ccced1 !important;
     }
-    input#sm-helpful-email, input.sm-helpful-email,
+
     #sm-helpful-comment-container textarea,
     .sm-helpful-comment textarea,
     textarea#sm-helpful-comment {
@@ -337,19 +299,15 @@ button.sm-question-answer{
         color: #e5e7eb;
         border: 1px solid #444;
     }
-    input#sm-helpful-email:focus, input.sm-helpful-email:focus,
+
     #sm-helpful-comment-container textarea:focus,
     .sm-helpful-comment textarea:focus,
     textarea#sm-helpful-comment:focus {
         border: 1.5px solid #545454;
         background: #2d2d2d;
     }
+
     .sm-submit-buttons {
         color: #23272e;
-        box-shadow: 0 2px 8px rgba(107, 114, 128, 0.10);
-    }
-    .sm-submit-buttons:disabled {
-        background: #43382c;
-        color: #9ca3af;
     }
 }

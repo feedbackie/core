@@ -55,14 +55,6 @@ return [
         'bad_color_scheme' => 'Незручний дизайн сайту',
     ],
 
-    'language_scores' => [
-        'very_unsatisfied' => 'Дуже не задоволений',
-        'unsatisfied' => 'Не задоволений',
-        'neutral' => 'Нейтрально',
-        'satisfied' => 'Задоволений',
-        'very_satisfied' => 'Дуже задоволений',
-    ],
-
     'pages' => [
         'overview' => [
             'title' => 'Огляд',
@@ -88,7 +80,7 @@ return [
     ],
     'resources' => [
         'feedback' => [
-            'navigation_group' => 'Зворотний зв\'язок',
+            'navigation_group' => 'Корисність',
             'navigation_label' => 'Всі відповіді',
             'record_label' => 'Зворотний зв\'язок',
             'record_plural_label' => 'Зворотний зв\'язок',
@@ -96,13 +88,12 @@ return [
             'url' => 'Url',
             'answer' => 'Відповідь',
             'options' => 'Варіанти',
-            'language_score' => 'Оцінка якості мови',
             'comment' => 'Коментар',
             'email' => 'Email',
         ],
 
         'feedback_stats' => [
-            'navigation_group' => 'Зворотний зв\'язок',
+            'navigation_group' => 'Корисність',
             'navigation_label' => 'Статистика',
             'record_label' => 'Зворотний зв\'язок',
             'record_plural_label' => 'Зворотний зв\'язок',
@@ -111,8 +102,6 @@ return [
             'yes_count' => 'Відповідей "Так"',
             'no_count' => 'Відповідей "Ні"',
             'options' => 'Варіанти',
-            'avg_score' => 'Середня оцінка мови',
-            'language_scores' => 'Оцінки мови',
             'comments' => 'Коментарі',
             'total_feedback_count' => 'Всього відповідей',
             'selected_options_count' => 'Відповіді з вибраними варіантами',

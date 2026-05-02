@@ -55,14 +55,6 @@ return [
         'bad_color_scheme' => 'Неудобный дизайн сайта',
     ],
 
-    'language_scores' => [
-        'very_unsatisfied' => 'Очень не удовлетворен',
-        'unsatisfied' => 'Не удовлетворен',
-        'neutral' => 'Нейтрально',
-        'satisfied' => 'Удовлетворен',
-        'very_satisfied' => 'Очень удовлетворен',
-    ],
-
     'pages' => [
         'overview' => [
             'title' => 'Обзор',
@@ -88,7 +80,7 @@ return [
     ],
     'resources' => [
         'feedback' => [
-            'navigation_group' => 'Обратная связь',
+            'navigation_group' => 'Полезность',
             'navigation_label' => 'Все ответы',
             'record_label' => 'Обратная связь',
             'record_plural_label' => 'Обратная связь',
@@ -96,13 +88,12 @@ return [
             'url' => 'Url',
             'answer' => 'Ответ',
             'options' => 'Варианты',
-            'language_score' => 'Оценка качества языка',
             'comment' => 'Комментарий',
             'email' => 'Email',
         ],
 
         'feedback_stats' => [
-            'navigation_group' => 'Обратная связь',
+            'navigation_group' => 'Полезность',
             'navigation_label' => 'Статистика',
             'record_label' => 'Обратная связь',
             'record_plural_label' => 'Обратная связь',
@@ -111,8 +102,6 @@ return [
             'yes_count' => 'Ответов "Да"',
             'no_count' => 'Ответов "Нет"',
             'options' => 'Варианты',
-            'avg_score' => 'Средняя оценка языка',
-            'language_scores' => 'Оценки языка',
             'comments' => 'Комментарии',
             'total_feedback_count' => 'Всего ответов',
             'selected_options_count' => 'Ответы с выбранными вариантами',
@@ -120,7 +109,7 @@ return [
         ],
 
         'report' => [
-            'navigation_group' => 'Сообщения об ошибках',
+            'navigation_group' => 'Ошибки',
             'navigation_label' => 'Все сообщения',
             'record_label' => 'Сообщение',
             'record_plural_label' => 'Сообщения',
@@ -133,7 +122,7 @@ return [
         ],
 
         'report_stats' => [
-            'navigation_group' => 'Сообщения об ошибках',
+            'navigation_group' => 'Ошибки',
             'navigation_label' => 'Статистика',
             'record_label' => 'Сообщение',
             'record_plural_label' => 'Сообщения',
@@ -175,5 +164,4 @@ return [
         'placeholder' => 'Не выбрано',
     ]
 ];
-
 

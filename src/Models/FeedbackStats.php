@@ -7,7 +7,6 @@ namespace Feedbackie\Core\Models;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Feedbackie\Core\Casts\AsFeedbackOptionsDistribution;
-use Feedbackie\Core\Casts\AsLanguageScoreDistribution;
 use Feedbackie\Core\Traits\HasCurrentSiteScope;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
@@ -22,12 +21,10 @@ use Illuminate\Support\Facades\DB;
  * @property string $url
  * @property string $url_hash
  * @property string|null $hash
- * @property int|null $language_score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int $user_id
  * @property string|null $email
- * @property $language_scores
  * @method static Builder<static>|FeedbackStats newModelQuery()
  * @method static Builder<static>|FeedbackStats newQuery()
  * @method static Builder<static>|FeedbackStats query()
@@ -37,7 +34,6 @@ use Illuminate\Support\Facades\DB;
  * @method static Builder<static>|FeedbackStats whereEmail($value)
  * @method static Builder<static>|FeedbackStats whereHash($value)
  * @method static Builder<static>|FeedbackStats whereId($value)
- * @method static Builder<static>|FeedbackStats whereLanguageScore($value)
  * @method static Builder<static>|FeedbackStats whereOptions($value)
  * @method static Builder<static>|FeedbackStats whereSiteId($value)
  * @method static Builder<static>|FeedbackStats whereUpdatedAt($value)
@@ -61,7 +57,6 @@ class FeedbackStats extends Model
     public $casts = [
         "comments" => AsArrayObject::class,
         "options" => AsFeedbackOptionsDistribution::class,
-        "language_scores" => AsLanguageScoreDistribution::class,
     ];
 
     protected function newBaseQueryBuilder()
@@ -78,8 +73,6 @@ class FeedbackStats extends Model
                 ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
                 ->selectRaw("json_agg(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
                 ->selectRaw("json_agg(options) AS options")
-                ->selectRaw("json_agg(language_score) AS language_scores")
-                ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
                 ->groupBy("url");
         } elseif ($driver === 'sqlite') {
             $builder
@@ -89,8 +82,6 @@ class FeedbackStats extends Model
                 ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
                 ->selectRaw("json_group_array(comment) FILTER (WHERE comment IS NOT NULL) AS comments")
                 ->selectRaw("json_group_array(options) AS options")
-                ->selectRaw("json_group_array(language_score) AS language_scores")
-                ->selectRaw("avg(language_score) FILTER (WHERE language_score IS NOT NULL) AS avg_score")
                 ->groupBy("url");
         }
 

@@ -40,8 +40,6 @@ class FeedbackService implements CanRetrieveFeedbackStats
     {
         $record->options = $dto->options;
         $record->comment = $dto->comment;
-        $record->email = $dto->email;
-        $record->language_score = $dto->languageScore;
 
         $record->save();
     }

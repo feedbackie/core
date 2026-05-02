@@ -8,7 +8,6 @@ use BackedEnum;
 use Carbon\Carbon;
 use Feedbackie\Core\Configuration\FeedbackieConfiguration;
 use Feedbackie\Core\Enums\FeedbackOptions;
-use Feedbackie\Core\Enums\LanguageScores;
 use Feedbackie\Core\Filament\Filters\AnswerFilter;
 use Feedbackie\Core\Filament\Filters\CreatedAtFilter;
 use Feedbackie\Core\Filament\Filters\HasCommentFilter;
@@ -100,19 +99,8 @@ class FeedbackResource extends Resource
                                 return $labels;
                             })
                             ->multiple(),
-                        TextInput::make("language_score")
-                            ->label(\__('feedbackie-core::labels.resources.feedback.language_score'))
-                            ->formatStateUsing(function ($state) {
-                                if (null !== $state) {
-                                    return LanguageScores::from($state)->label();
-                                } else {
-                                    return "";
-                                }
-                            }),
                         Textarea::make("comment")
                             ->label(\__('feedbackie-core::labels.resources.feedback.comment')),
-                        Textarea::make("email")
-                            ->label(\__('feedbackie-core::labels.resources.feedback.email')),
                         TextInput::make("created_at")
                             ->label(\__('feedbackie-core::labels.general.created_at'))
                             ->formatStateUsing(function ($state): string {
@@ -152,7 +140,7 @@ class FeedbackResource extends Resource
                     })
                     ->icon('heroicon-o-user-circle')
                     ->iconColor(function (Feedback $record) {
-                        return Colors::getColors()[Hash::md5ToNumber($record?->metadata?->getHashAttribute())];
+                        return Colors::getColors()[Hash::md5ToNumber($record->metadata?->getHashAttribute())];
                     })
                 ,
                 TextColumn::make("url")
@@ -185,17 +173,6 @@ class FeedbackResource extends Resource
 
                         return $duration;
                     }),
-                TextColumn::make("language_score")
-                    ->label(\__('feedbackie-core::labels.resources.feedback.language_score'))
-                    ->sortable()
-                    ->tooltip(function ($state) {
-                        if (null !== $state) {
-                            return LanguageScores::from($state)->label();
-                        } else {
-                            return "";
-                        }
-                    })
-                    ->toggleable(true, true),
                 TextColumn::make("metadata.country")
                     ->label(\__('feedbackie-core::labels.metadata.country'))
                     ->toggleable(true, true),
