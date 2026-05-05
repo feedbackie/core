@@ -16,7 +16,7 @@ class SiteCodeBuilder
     private ?int $feedbackStickyRatio = null;
     private ?string $baseUrl = null;
     private ?string $locale = null;
-    private ?float $stickyRatio = null;
+    private ?float $stickyRatio = 0;
     private bool $displayPoweredBy = false;
 
     public function __construct(string $siteId)
