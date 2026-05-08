@@ -26,7 +26,7 @@ class SubmitFeedbackController extends Controller
 
         $record = $service->makeFeedbackRecord($siteEntity, $request->getFeedbackDto());
 
-        $stats = $service->getFeedbackStatsByUrl($request->getFeedbackDto()->url);
+        $stats = $service->getFeedbackStatsByUrl($siteEntity, $request->getFeedbackDto()->url);
 
         return response()->json([
             'success' => true,

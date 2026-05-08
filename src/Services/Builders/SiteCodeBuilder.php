@@ -9,14 +9,17 @@ class SiteCodeBuilder
     private string $siteId = "";
     private bool $isFeedbackEnabled = true;
     private bool $isReportEnabled = true;
+    private bool $isReportMessageEnabled = true;
+    private bool $isReportButtonEnabled = true;
     private string $feedbackAnchorSelector = "";
-    private string $reportAnchorSelector = "";
-    private ?string $reportInsertType = null;
-    private ?string $feedbackInsertType = null;
-    private ?int $feedbackStickyRatio = null;
+    private string $reportMessageAnchorSelector = "";
+    private ?string $reportMessageInsertType = null;
+    private ?string $feedbackWidgetInsertType = null;
     private ?string $baseUrl = null;
     private ?string $locale = null;
-    private ?float $stickyRatio = 0;
+    private float $feedbackStickyRatio = 0;
+    private float $feedbackStickyPercent = 50;
+    private string $feedbackWidgetTheme = 'adaptive';
     private bool $displayPoweredBy = false;
 
     public function __construct(string $siteId)
@@ -38,16 +41,30 @@ class SiteCodeBuilder
         return $this;
     }
 
-    public function feedbackAnchorSelector(string $anchorSelector): self
+    public function reportMessageEnabled(bool $flag = true): self
+    {
+        $this->isReportMessageEnabled = $flag;
+
+        return $this;
+    }
+
+    public function reportButtonEnabled(bool $flag = true): self
+    {
+        $this->isReportButtonEnabled = $flag;
+
+        return $this;
+    }
+
+    public function feedbackWidgetAnchorSelector(string $anchorSelector): self
     {
         $this->feedbackAnchorSelector = $anchorSelector;
 
         return $this;
     }
 
-    public function reportAnchorSelector(string $anchorSelector): self
+    public function reportMessageAnchorSelector(string $anchorSelector): self
     {
-        $this->reportAnchorSelector = $anchorSelector;
+        $this->reportMessageAnchorSelector = $anchorSelector;
 
         return $this;
     }
@@ -66,9 +83,23 @@ class SiteCodeBuilder
         return $this;
     }
 
-    public function stickyRato(float $ratio): self
+    public function feedbackStickyRato(float $ratio): self
     {
-        $this->stickyRatio = $ratio;
+        $this->feedbackStickyRatio = $ratio;
+
+        return $this;
+    }
+
+    public function feedbackStickyPercent(float $percent): self
+    {
+        $this->feedbackStickyPercent = $percent;
+
+        return $this;
+    }
+
+    public function feedbackWidgetTheme(string $theme): self
+    {
+        $this->feedbackWidgetTheme = $theme;
 
         return $this;
     }
@@ -87,9 +118,13 @@ class SiteCodeBuilder
                 'siteId' => $this->siteId,
                 'feedbackEnabled' => $this->isFeedbackEnabled,
                 'reportEnabled' => $this->isReportEnabled,
-                'feedbackAnchorSelector' => $this->feedbackAnchorSelector,
-                'reportAnchorSelector' => $this->reportAnchorSelector,
-                'stickyRatio' => $this->stickyRatio,
+                'reportMessageEnabled' => $this->isReportMessageEnabled,
+                'reportButtonEnabled' => $this->isReportButtonEnabled,
+                'reportMessageAnchorSelector' => $this->reportMessageAnchorSelector,
+                'feedbackWidgetAnchorSelector' => $this->feedbackAnchorSelector,
+                'feedbackWidgetTheme' => $this->feedbackWidgetTheme,
+                'feedbackStickyRatio' => $this->feedbackStickyRatio,
+                'feedbackStickyPercent' => $this->feedbackStickyPercent,
                 'displayPoweredBy' => $this->displayPoweredBy,
                 'baseUrl' => $this->baseUrl,
                 'locale' => $this->locale,

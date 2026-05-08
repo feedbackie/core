@@ -6,18 +6,31 @@ namespace Feedbackie\Core\Http\Controllers\Api\Feedback;
 
 use Feedbackie\Core\Contracts\CanRetrieveFeedbackStats;
 use Feedbackie\Core\Http\Requests\Api\Feedback\StatsFeedbackRequest;
+use Feedbackie\Core\Models\Site;
 use Feedbackie\Core\Services\FeedbackService;
 use Illuminate\Routing\Controller;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class StatsFeedbackController extends Controller
 {
-    public function __invoke(StatsFeedbackRequest $request, CanRetrieveFeedbackStats $service)
-    {
-        $stats = $service->getFeedbackStatsByUrl($request->getUrl());
+    public function __invoke(
+        string $site,
+        StatsFeedbackRequest $request,
+        CanRetrieveFeedbackStats $service
+    ) {
+        /** @var Site $siteEntity */
+        $siteEntity = Site::query()->findOrFail($site);
+
+        if (false === $siteEntity->feedback_enabled) {
+            throw new AccessDeniedHttpException();
+        }
+
+        $stats = $service->getFeedbackStatsByUrl($siteEntity, $request->getUrl());
 
         return response()->json([
-            'useful' => $stats->useful,
-            'not_useful' => $stats->notUseful,
+            'success' => true,
+            'helpful_count' => $stats->useful,
+            'not_helpful_count' => $stats->notUseful,
         ]);
     }
 }

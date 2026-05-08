@@ -45,6 +45,7 @@ class MetadataService
         $metadata->ts = $timestapms->ts;
         $metadata->ls = $timestapms->ls;
         $metadata->ss = $timestapms->ss;
+        $metadata->version = $this->request->input('version', null);
 
         return $metadata;
     }

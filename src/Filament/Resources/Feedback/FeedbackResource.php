@@ -11,7 +11,6 @@ use Feedbackie\Core\Enums\FeedbackOptions;
 use Feedbackie\Core\Filament\Filters\AnswerFilter;
 use Feedbackie\Core\Filament\Filters\CreatedAtFilter;
 use Feedbackie\Core\Filament\Filters\HasCommentFilter;
-use Feedbackie\Core\Filament\Filters\HasEmailFilter;
 use Feedbackie\Core\Filament\Filters\HasOptionsFilter;
 use Feedbackie\Core\Filament\Filters\OptionsFilter;
 use Feedbackie\Core\Filament\Resources\Feedback\Pages\ListFeedbacks;
@@ -202,7 +201,6 @@ class FeedbackResource extends Resource
                 CreatedAtFilter::make(),
                 HasOptionsFilter::make(),
                 HasCommentFilter::make(),
-                HasEmailFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make(),

@@ -44,7 +44,7 @@ class FeedbackService implements CanRetrieveFeedbackStats
         $record->save();
     }
 
-    public function getFeedbackStatsByUrl(string $url): FeedbackStatsDto
+    public function getFeedbackStatsByUrl(Site $site, string $url): FeedbackStatsDto
     {
         $feedbackTable = (new Feedback())->getTable();
         $stats = DB::table($feedbackTable)
@@ -53,6 +53,7 @@ class FeedbackService implements CanRetrieveFeedbackStats
             ->selectRaw("count(*) FILTER (WHERE answer = 'no') AS no_count")
             ->groupBy("url")
             ->where('url', $url)
+            ->where('site_id', $site->getKey())
             ->first();
 
         return new FeedbackStatsDto(

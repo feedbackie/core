@@ -36,6 +36,8 @@ class MetadataSchema
                     }
                     return Date::formatSeconds($record->ts - $record->ls);
                 }),
+            TextInput::make("version")
+                ->label(\__('feedbackie-core::labels.metadata.version')),
         ];
     }
 }

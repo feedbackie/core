@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feedback</title>
 </head>
-<body>
+<body style="background: #343434; color: #c5c5c5;">
 
 <article>
     <p>
@@ -302,11 +302,12 @@
 
 {!! (new \Feedbackie\Core\Services\Builders\SiteCodeBuilder(\Feedbackie\Core\Models\Site::first()?->getKey()))
     ->feedbackEnabled(true)
-    ->feedbackAnchorSelector("helpful-popup")
+    ->feedbackWidgetAnchorSelector("helpful-popup")
     ->reportEnabled(false)
     ->baseUrl(config('app.url'))
     ->locale('en')
-    ->stickyRato(1.0)
+    ->feedbackStickyRato(1.0)
+    ->feedbackWidgetTheme("adaptive")
     ->displayPoweredBy(true)
     ->build()
 !!}

@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('feedback', function (Blueprint $table): void {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->foreignUuid("site_id")
                 ->nullable()
                 ->references("id")
@@ -40,6 +40,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedbacks');
+        Schema::dropIfExists('feedback');
     }
 };

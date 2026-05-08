@@ -70,7 +70,8 @@ class Metadata extends Model implements HasUserAndSiteScope
         "country",
         "device",
         "os",
-        "browser"
+        "browser",
+        "version",
     ];
 
     public function instance(): MorphTo

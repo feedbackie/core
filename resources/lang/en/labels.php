@@ -71,6 +71,7 @@ return [
         'language' => 'Language',
         'user_agent' => 'User Agent',
         'duration' => 'Duration',
+        'version' => 'Script Version',
     ],
 
     'actions' => [

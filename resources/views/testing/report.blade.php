@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feedback</title>
 </head>
-<body>
+
+<body style="background: #343434; color: #c5c5c5;">
 
 <div id="sm-report-message"></div>
 
@@ -75,7 +76,7 @@
 {!! (new \Feedbackie\Core\Services\Builders\SiteCodeBuilder(\Feedbackie\Core\Models\Site::first()?->getKey()))
     ->feedbackEnabled(false)
     ->reportEnabled(true)
-    ->reportAnchorSelector("sm-report-message")
+    ->reportMessageAnchorSelector("sm-report-message")
     ->baseUrl(config('app.url'))
     ->locale('en')
     ->build()

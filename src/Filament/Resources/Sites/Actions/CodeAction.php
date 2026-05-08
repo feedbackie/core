@@ -61,11 +61,11 @@ class CodeAction extends Action
             ->feedbackEnabled($record->feedback_enabled);
 
         if ($record->report_enabled && $reportAnchor !== null) {
-            $builder->reportAnchorSelector($reportAnchor);
+            $builder->reportMessageAnchorSelector($reportAnchor);
         }
 
         if ($record->feedback_enabled && $feedbackAnchor !== null) {
-            $builder->feedbackAnchorSelector($feedbackAnchor);
+            $builder->feedbackWidgetAnchorSelector($feedbackAnchor);
         }
 
         return $builder->build();
