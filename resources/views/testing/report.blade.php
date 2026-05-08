@@ -75,6 +75,7 @@
 
 {!! (new \Feedbackie\Core\Services\Builders\SiteCodeBuilder(\Feedbackie\Core\Models\Site::first()?->getKey()))
     ->feedbackEnabled(false)
+    ->displayPoweredBy(true)
     ->reportEnabled(true)
     ->reportMessageAnchorSelector("sm-report-message")
     ->baseUrl(config('app.url'))

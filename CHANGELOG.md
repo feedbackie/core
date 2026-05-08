@@ -1,3 +1,8 @@
+## 1.0.5
+
+- The script's configuration options have been updated to clarify what each one does 
+- Added feedback_widget_theme option to allow users to choose between light and dark themes for the feedback widget
+- Added the ability to save the version of the script from which the request was sent
 
 ## 1.0.4
 
