@@ -29,8 +29,8 @@ class StatsFeedbackController extends Controller
 
         return response()->json([
             'success' => true,
-            'helpful_count' => $stats->useful,
-            'not_helpful_count' => $stats->notUseful,
+            'useful_count' => $stats->useful,
+            'not_useful_count' => $stats->notUseful,
         ]);
     }
 }
